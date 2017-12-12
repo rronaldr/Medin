@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_treatment"
+            android:icon="@drawable/ic_menu_treatment"
+            android:title="Léčba" />
+        <item
+            android:id="@+id/nav_meds"
+            android:icon="@drawable/ic_menu_pill"
+            android:title="Léky" />
+        <item
+            android:id="@+id/nav_inventory"
+            android:icon="@drawable/ic_menu_inventory"
+            android:title="Inventář" />
+        <item
+            android:id="@+id/nav_measurment"
+            android:icon="@drawable/ic_menu_measurment"
+            android:title="Měření" />
+    </group>
+
+    <group android:id="@+id/nav_group_second"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_journal"
+            android:icon="@drawable/ic_menu_book"
+            android:title="Záznam" />
+        <item
+            android:id="@+id/nav_doctors"
+            android:icon="@drawable/ic_menu_people"
+            android:title="Doktor" />
+        <item
+            android:id="@+id/nav_report"
+            android:icon="@drawable/ic_menu_report"
+            android:title="Poslat zprávu" />
+    </group>
+
+
+    <group android:id="@+id/nav_group_third"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/ic_menu_settings"
+            android:title="Nastavení" />
+        <item
+            android:id="@+id/nav_help"
+            android:icon="@drawable/ic_menu_help"
+            android:title="Nápověda" />
+    </group>
+
+</menu>
