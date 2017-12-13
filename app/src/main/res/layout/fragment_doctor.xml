@@ -3,12 +3,53 @@
     android:layout_height="match_parent"
     tools:context="com.ronald.medin.DoctorFragment">
 
-    <Button
+    <EditText
+        android:id="@+id/doctorNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Doctor"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:ems="10"
+        android:layout_marginTop="80dp"
+        android:inputType="phone"
+        android:hint="Telefonní číslo" />
+    <EditText
+        android:id="@+id/doctorEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="120dp"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        android:hint="E-mail"
+        />
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true">
+
+        <Button
+            android:id="@+id/callButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Call Doctor" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/linearLayout">
+
+        <Button
+            android:id="@+id/emailButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:text="Email Doctor" />
+    </LinearLayout>
 
 </RelativeLayout>
