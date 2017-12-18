@@ -16,8 +16,7 @@ public class TreatmentActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_treatment_result);
-
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        
 
         String x;
         TextView displMsg = (TextView) this.findViewById(R.id.msgTextView);
