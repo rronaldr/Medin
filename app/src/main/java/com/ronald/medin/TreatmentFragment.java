@@ -6,6 +6,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.media.RingtoneManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.NotificationCompat;
@@ -51,7 +52,7 @@ public class TreatmentFragment extends Fragment {
                 notification.setSmallIcon(R.mipmap.ic_launcher_round)
                         .setContentTitle("Vzít si léky")
                         .setContentText("Paralen 400mg")
-                        .setDefaults(Notification.DEFAULT_ALL)
+                        .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE))
                         .setStyle(new NotificationCompat.BigTextStyle().bigText("Vzít si Paralen 400mg (2 tablety)"))
                         .setContentIntent(pendingIntent)
                         .addAction(take)
