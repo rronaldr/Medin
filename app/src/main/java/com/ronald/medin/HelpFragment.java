@@ -35,17 +35,22 @@ public class HelpFragment extends Fragment {
         final Intent notIntent = new Intent();
         final PendingIntent pendingIntent = PendingIntent.getActivity(context,0,notIntent,PendingIntent.FLAG_UPDATE_CURRENT);
 
-        v.findViewById(R.id.helpButton).setOnClickListener(new View.OnClickListener() {
+
+        v.findViewById(R.id.notificationButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NotificationCompat.Builder notification = new NotificationCompat.Builder(context);
-                notification.setSmallIcon(R.mipmap.ic_launcher_round)
-                        .setContentTitle("Vzít si léky")
-                        .setContentText("Vzít si Paralen 400mg (2 tablety)")
+                NotificationCompat.Builder notification2 = new NotificationCompat.Builder(context);
+                notification2.setSmallIcon(R.mipmap.ic_launcher_round)
+                        .setContentTitle("Upozornění")
+                        .setContentText("Zbývá posledních (5 tablet) Paralen 400")
                         .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
                         .setContentIntent(pendingIntent);
+
+
                 NotificationManager ntfManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-                ntfManager.notify(1,notification.build());
+                ntfManager.notify(2,notification2.build());
+
+
             }
         });
 
