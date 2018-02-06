@@ -1,7 +1,6 @@
-package com.ronald.medin;
+package com.ronald.medin.Fragments;
 
 import android.app.AlarmManager;
-import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -13,6 +12,9 @@ import android.support.v4.app.NotificationCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.ronald.medin.R;
+import com.ronald.medin.Activities.TreatmentActivity;
 
 
 public class TreatmentFragment extends Fragment {

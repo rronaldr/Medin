@@ -1,4 +1,4 @@
-package com.ronald.medin;
+package com.ronald.medin.Fragments;
 
 
 import android.os.Bundle;
@@ -7,14 +7,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.ronald.medin.R;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class InventoryFragment extends Fragment {
+public class SettingsFragment extends Fragment {
 
 
-    public InventoryFragment() {
+    public SettingsFragment() {
         // Required empty public constructor
     }
 
@@ -23,7 +25,7 @@ public class InventoryFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_inventory, container, false);
+        return inflater.inflate(R.layout.fragment_settings, container, false);
     }
 
 }

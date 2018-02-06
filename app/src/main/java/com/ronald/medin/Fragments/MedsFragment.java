@@ -1,4 +1,4 @@
-package com.ronald.medin;
+package com.ronald.medin.Fragments;
 
 
 import android.os.Bundle;
@@ -7,14 +7,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-
-/**
- * A simple {@link Fragment} subclass.
- */
-public class JournalFragment extends Fragment {
+import com.ronald.medin.R;
 
 
-    public JournalFragment() {
+public class MedsFragment extends Fragment {
+
+
+    public MedsFragment() {
         // Required empty public constructor
     }
 
@@ -23,7 +22,7 @@ public class JournalFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_journal, container, false);
+        return inflater.inflate(R.layout.fragment_meds, container, false);
     }
 
 }

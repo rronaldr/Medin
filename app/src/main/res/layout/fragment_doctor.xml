@@ -1,9 +1,33 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.ronald.medin.DoctorFragment">
+    tools:context="com.ronald.medin.Fragments.DoctorFragment">
 
-    <EditText
+
+        <ListView
+            android:id="@+id/doctorListView"
+            android:layout_width="match_parent"
+            android:layout_height="280dp" />
+
+        <TextView
+            android:id="@+id/errorLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"/>
+
+        <Button
+            android:id="@+id/btnNewDoctor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="350dp"
+            android:layout_centerHorizontal="true"
+            android:text="Insert new" />
+
+
+
+
+    <!-- <EditText
         android:id="@+id/doctorNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -50,6 +74,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="100dp"
             android:text="Email Doctor" />
-    </LinearLayout>
+    </LinearLayout> -->
 
 </RelativeLayout>

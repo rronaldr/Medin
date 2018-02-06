@@ -22,12 +22,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".TreatmentActivity"
+            android:name=".Activities.TreatmentActivity"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme">
-            <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity"/>
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
         </activity>
+        <activity
+            android:name=".Activities.InsertDoctorActivity"
+            android:label="@string/title_activity_insert_doctor"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

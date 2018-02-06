@@ -1,4 +1,4 @@
-package com.ronald.medin;
+package com.ronald.medin.Fragments;
 
 
 import android.app.Notification;
@@ -13,6 +13,8 @@ import android.support.v4.app.NotificationCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.ronald.medin.R;
 
 
 /**

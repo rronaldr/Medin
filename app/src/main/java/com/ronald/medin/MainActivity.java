@@ -1,17 +1,23 @@
 package com.ronald.medin;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
+
+import com.ronald.medin.Fragments.DoctorFragment;
+import com.ronald.medin.Fragments.HelpFragment;
+import com.ronald.medin.Fragments.InventoryFragment;
+import com.ronald.medin.Fragments.JournalFragment;
+import com.ronald.medin.Fragments.MeasurmentFragment;
+import com.ronald.medin.Fragments.MedsFragment;
+import com.ronald.medin.Fragments.ReportFragment;
+import com.ronald.medin.Fragments.SettingsFragment;
+import com.ronald.medin.Fragments.TreatmentFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
