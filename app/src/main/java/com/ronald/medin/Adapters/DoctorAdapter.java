@@ -35,7 +35,7 @@ public class DoctorAdapter extends ArrayAdapter<Doctor> {
         TextView doctorEmail = convertView.findViewById(R.id.item_doctorEmail);
         TextView doctorPhone = convertView.findViewById(R.id.item_doctorPhone);
 
-        doctorName.setText(doctor.getName());
+        doctorName.setText(doctor.getName());//Comment
         doctorSurname.setText(doctor.getSurname());
         doctorEmail.setText(doctor.getEmail());
         doctorPhone.setText(String.valueOf(doctor.getTelephone()));
