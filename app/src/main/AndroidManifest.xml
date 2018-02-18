@@ -12,7 +12,9 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
+            android:configChanges="orientation"
             android:label="@string/app_name"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,6 +25,7 @@
         </activity>
         <activity
             android:name=".Activities.TreatmentActivity"
+            android:configChanges="orientation"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme">
             <meta-data
@@ -30,8 +33,13 @@
                 android:value=".MainActivity" />
         </activity>
         <activity
-            android:name=".Activities.InsertDoctorActivity"
+            android:name=".Activities.InsertEditDoctorActivity"
+            android:configChanges="orientation"
             android:label="@string/title_activity_insert_doctor"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".Activities.DoctorInfo"
+            android:label="@string/title_activity_doctor_info"
             android:theme="@style/AppTheme"></activity>
     </application>
 

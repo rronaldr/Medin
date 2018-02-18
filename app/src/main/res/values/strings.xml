@@ -5,4 +5,5 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="application_name">Medin</string>
     <string name="title_activity_insert_doctor">InsertDoctorActivity</string>
+    <string name="title_activity_doctor_info">Doctor</string>
 </resources>

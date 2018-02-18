@@ -6,23 +6,28 @@
 
         <ListView
             android:id="@+id/doctorListView"
-            android:layout_width="match_parent"
-            android:layout_height="280dp" />
-
-        <TextView
-            android:id="@+id/errorLabel"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"/>
+            android:layout_below="@+id/toolbar"
+            android:divider="@null"
+            android:dividerHeight="0dp" />
 
         <Button
             android:id="@+id/btnNewDoctor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="350dp"
             android:layout_centerHorizontal="true"
+            android:layout_below="@id/doctorListView"
+            android:layout_margin="10dp"
             android:text="Insert new" />
+        <TextView
+            android:id="@+id/errorLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btnNewDoctor"
+            android:layout_margin="10dp"
+            android:layout_centerHorizontal="true"
+            />
 
 
 

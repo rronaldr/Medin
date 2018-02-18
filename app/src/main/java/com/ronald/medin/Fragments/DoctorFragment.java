@@ -3,25 +3,23 @@ package com.ronald.medin.Fragments;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
+import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
-import com.ronald.medin.Activities.InsertDoctorActivity;
-import com.ronald.medin.Adapters.DoctorAdapter;
-import com.ronald.medin.Classes.Doctor;
+import com.ronald.medin.Activities.DoctorInfo;
+import com.ronald.medin.Activities.InsertEditDoctorActivity;
 import com.ronald.medin.R;
 import com.ronald.medin.SQLite;
-
-import java.util.List;
 
 
 public class DoctorFragment extends Fragment {
@@ -36,30 +34,58 @@ public class DoctorFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_doctor, container, false);
+        setRetainInstance(true);
 
         final Context context = getActivity().getApplicationContext();
         final ListView doctorListView = v.findViewById(R.id.doctorListView);
         final TextView errLabel = v.findViewById(R.id.errorLabel);
         SQLite db = new SQLite(context);
-
-        List<Doctor> doctors = db.getAllDoctors();
-        DoctorAdapter doctorArrayAdapter = new DoctorAdapter(context, doctors);
+        final Cursor doctors = db.getAllDoctors();
 
 
-        if(doctors.isEmpty()){
-            errLabel.setText("Nemáte uložené žádné lékaře.");
-        } else {
+        String[] columns = new String[] {
+                SQLite.DOCTOR_COLUMN_NAME,
+                SQLite.DOCTOR_COLUMN_SURNAME,
+                SQLite.DOCTOR_COLUMN_EMAIL,
+                SQLite.DOCTOR_COLUMN_TELEPHONE
+        };
 
-            doctorListView.setAdapter(doctorArrayAdapter);
-        }
+        int[] holders = new int[]{
+                R.id.item_doctorName,
+                R.id.item_doctorSurname,
+                R.id.item_doctorEmail,
+                R.id.item_doctorPhone
+        };
+
+        SimpleCursorAdapter doctorListViewAdapter = new SimpleCursorAdapter(context, R.layout.item_doctor, doctors, columns, holders, 0);
+        doctorListViewAdapter.notifyDataSetChanged();
+        doctorListView.setAdapter(doctorListViewAdapter);
+
+        doctorListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+
+                Cursor itemCursor = (Cursor) doctorListView.getItemAtPosition(position);
+                int doctorID = itemCursor.getInt(itemCursor.getColumnIndex(SQLite.DOCTOR_COLUMN_ID));
+                Intent navigate = new Intent(getActivity(), DoctorInfo.class);
+                navigate.putExtra("ItemID", doctorID);
+                getActivity().startActivity(navigate);
+            }
+        });
 
         v.findViewById(R.id.btnNewDoctor).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent navigate = new Intent(getActivity(), InsertDoctorActivity.class);
+                Intent navigate = new Intent(getActivity(), InsertEditDoctorActivity.class);
+                navigate.putExtra("ItemID", 0);
                 getActivity().startActivity(navigate);
             }
         });
+
+
+
+
+
 //        final EditText doctorNumber = (EditText)v.findViewById(R.id.doctorNumber);
 //        final EditText doctorEmail = (EditText) v.findViewById(R.id.doctorEmail);
 //
