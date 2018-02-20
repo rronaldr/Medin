@@ -33,13 +33,25 @@
                 android:value=".MainActivity" />
         </activity>
         <activity
-            android:name=".Activities.InsertEditDoctorActivity"
+            android:name=".Activities.InsertDoctorActivity"
             android:configChanges="orientation"
             android:label="@string/title_activity_insert_doctor"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".Activities.DoctorInfo"
             android:label="@string/title_activity_doctor_info"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".Activities.MeasurementInfo"
+            android:label="@string/title_activity_measurement_info"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".Activities.InsertMeasurementActivity"
+            android:label="@string/title_activity_insert_measurement"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".Activities.MedicineInfo"
+            android:label="@string/title_activity_medicine_info"
             android:theme="@style/AppTheme"></activity>
     </application>
 

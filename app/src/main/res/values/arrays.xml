@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="insertMeasurementNameSpinner">
+        <item>Váha</item>
+        <item>Tlak</item>
+        <item>Hladina cukru v krvi</item>
+        <item>Frekvence tepu</item>
+        <item>Vlastní</item>
+    </string-array>
+    <string-array name="insertMeasurementUnitSpinner">
+        <item>Kg</item>
+        <item>mmol/l</item>
+        <item>tep/min</item>
+        <item>Vlastní</item>
+        <item>-</item>
+    </string-array>
+</resources>

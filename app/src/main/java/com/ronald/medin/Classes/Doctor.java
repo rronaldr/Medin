@@ -3,26 +3,32 @@ package com.ronald.medin.Classes;
 public class Doctor {
 
     private int id;
+    private String specialization;
     private String name;
     private String surname;
     private String email;
     private int telephone;
+    private String workingHours;
 
     public Doctor(){
 
     }
-    public Doctor(int ID, String Name, String Surname, String Email, int Telephone){
+    public Doctor(int ID, String Specialization ,String Name, String Surname, String Email, int Telephone, String WorkingHours){
         this.id = ID;
+        this.specialization = Specialization;
         this.name = Name;
         this.surname = Surname;
         this.email = Email;
         this.telephone = Telephone;
+        this.workingHours = WorkingHours;
     }
-    public Doctor(String Name, String Surname, String Email, int Telephone){
+    public Doctor(String Specialization ,String Name, String Surname, String Email, int Telephone, String WorkingHours){
+        this.specialization = Specialization;
         this.name = Name;
         this.surname = Surname;
         this.email = Email;
         this.telephone = Telephone;
+        this.workingHours = WorkingHours;
     }
 
     //Id
@@ -32,6 +38,10 @@ public class Doctor {
     public void setId(int ID){
         this.id = ID;
     }
+
+    //Degree
+    public String getSpecialization(){ return specialization; }
+    public void setSpecialization(String Specialization){ this.specialization = Specialization; }
 
     //Name
     public String getName(){
@@ -65,4 +75,7 @@ public class Doctor {
         this.telephone = Telephone;
     }
 
+    //Working Hours
+    public String getWorkingHours() { return workingHours; }
+    public void setWorkingHours(String workingHours) { this.workingHours = workingHours; }
 }

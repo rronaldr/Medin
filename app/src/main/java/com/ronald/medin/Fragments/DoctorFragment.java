@@ -17,7 +17,7 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
 import com.ronald.medin.Activities.DoctorInfo;
-import com.ronald.medin.Activities.InsertEditDoctorActivity;
+import com.ronald.medin.Activities.InsertDoctorActivity;
 import com.ronald.medin.R;
 import com.ronald.medin.SQLite;
 
@@ -29,6 +29,7 @@ public class DoctorFragment extends Fragment {
         // Required empty public constructor
     }
 
+    ListView doctorListView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -36,30 +37,9 @@ public class DoctorFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_doctor, container, false);
         setRetainInstance(true);
 
-        final Context context = getActivity().getApplicationContext();
-        final ListView doctorListView = v.findViewById(R.id.doctorListView);
-        final TextView errLabel = v.findViewById(R.id.errorLabel);
-        SQLite db = new SQLite(context);
-        final Cursor doctors = db.getAllDoctors();
+        doctorListView = v.findViewById(R.id.doctorListView);
 
-
-        String[] columns = new String[] {
-                SQLite.DOCTOR_COLUMN_NAME,
-                SQLite.DOCTOR_COLUMN_SURNAME,
-                SQLite.DOCTOR_COLUMN_EMAIL,
-                SQLite.DOCTOR_COLUMN_TELEPHONE
-        };
-
-        int[] holders = new int[]{
-                R.id.item_doctorName,
-                R.id.item_doctorSurname,
-                R.id.item_doctorEmail,
-                R.id.item_doctorPhone
-        };
-
-        SimpleCursorAdapter doctorListViewAdapter = new SimpleCursorAdapter(context, R.layout.item_doctor, doctors, columns, holders, 0);
-        doctorListViewAdapter.notifyDataSetChanged();
-        doctorListView.setAdapter(doctorListViewAdapter);
+        setListViewItemsSource();
 
         doctorListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -76,13 +56,11 @@ public class DoctorFragment extends Fragment {
         v.findViewById(R.id.btnNewDoctor).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent navigate = new Intent(getActivity(), InsertEditDoctorActivity.class);
+                Intent navigate = new Intent(getActivity(), InsertDoctorActivity.class);
                 navigate.putExtra("ItemID", 0);
                 getActivity().startActivity(navigate);
             }
         });
-
-
 
 
 
@@ -114,6 +92,38 @@ public class DoctorFragment extends Fragment {
 
         return v;
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        setListViewItemsSource();
+    }
+
+    public void setListViewItemsSource(){
+
+        final Context context = getActivity().getApplicationContext();
+        SQLite db = new SQLite(context);
+        final Cursor doctors = db.getAllDoctors();
+        Log.v("Cursor Object", DatabaseUtils.dumpCursorToString(doctors));
+
+        String[] columns = new String[] {
+                SQLite.DOCTOR_COLUMN_SPECIALIZATION,
+                SQLite.DOCTOR_COLUMN_NAME,
+                SQLite.DOCTOR_COLUMN_SURNAME
+        };
+
+        int[] holders = new int[]{
+                R.id.item_doctorSpecialization,
+                R.id.item_doctorName,
+                R.id.item_doctorSurname
+        };
+
+        SimpleCursorAdapter doctorListViewAdapter = new SimpleCursorAdapter(context, R.layout.item_doctor, doctors, columns, holders, 0);
+        doctorListViewAdapter.notifyDataSetChanged();
+        doctorListView.setAdapter(doctorListViewAdapter);
+    }
+
 
 
 }

@@ -6,4 +6,7 @@
     <string name="application_name">Medin</string>
     <string name="title_activity_insert_doctor">InsertDoctorActivity</string>
     <string name="title_activity_doctor_info">Doctor</string>
+    <string name="title_activity_measurement_info">MeasurementInfo</string>
+    <string name="title_activity_insert_measurement">InsertMeasurement</string>
+    <string name="title_activity_medicine_info">MedicineInfo</string>
 </resources>

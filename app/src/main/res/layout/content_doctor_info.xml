@@ -9,28 +9,62 @@
     tools:showIn="@layout/activity_doctor_info">
 
     <EditText
+        android:id="@+id/doctorinfo_specialization"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="@color/black"
+        android:focusable="false"
+        android:clickable="false"/>
+    <EditText
         android:id="@+id/doctorinfo_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/doctorinfo_specialization"
+        android:textColor="@color/black"
+        android:focusable="false"
+        android:clickable="false"/>
     <EditText
         android:id="@+id/doctorinfo_surname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:enabled="false"
         android:focusable="false"
-        android:textColor="#000000"
+        android:textColor="@color/black"
         android:clickable="false"
         app:layout_constraintTop_toBottomOf="@id/doctorinfo_name" />
 
     <Button
-        android:id="@+id/doctorinfo_deleteBtn"
+        android:id="@+id/doctorinfo_editBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@+id/doctorinfo_surname"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:text="Delete"
+        android:inputType="textPersonName"
+        android:text="Změnit"
+        android:onClick="EditDoctor"/>
+
+    <Button
+        android:id="@+id/doctorinfo_saveBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/doctorinfo_surname"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:inputType="textPersonName"
+        android:text="Uložit"
+        android:visibility="gone"
+        android:onClick="UpdateDoctor"/>
+
+    <Button
+        android:id="@+id/doctorinfo_deleteBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/doctorinfo_editBtn"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:inputType="textPersonName"
+        android:text="Odstranit"
         android:onClick="DeleteDoctor"/>
 
 </android.support.constraint.ConstraintLayout>
