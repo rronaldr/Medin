@@ -9,4 +9,5 @@
     <string name="title_activity_measurement_info">MeasurementInfo</string>
     <string name="title_activity_insert_measurement">InsertMeasurement</string>
     <string name="title_activity_medicine_info">MedicineInfo</string>
+    <string name="title_activity_alarm">Alarm</string>
 </resources>

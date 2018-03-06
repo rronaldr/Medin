@@ -1,18 +1,23 @@
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.ronald.medin.Fragments.TreatmentFragment">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context="com.ronald.medin.Fragments.TreatmentFragment">
 
     <Button
         android:id="@+id/treatmentButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Treatment"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"/>
+    <Button
+        android:id="@+id/treatmentAlarmButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Alarm"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/treatmentButton"
         android:layout_gravity="center"/>
 
-    <android.support.design.widget.FloatingActionButton
-        android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end" android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/ic_float_add" />
-
-</android.support.design.widget.CoordinatorLayout>
+</RelativeLayout>

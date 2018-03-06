@@ -9,12 +9,17 @@ import android.media.RingtoneManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.NotificationCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.ronald.medin.Activities.Alarm;
+import com.ronald.medin.Alarms.AlarmReceiver;
 import com.ronald.medin.R;
 import com.ronald.medin.Activities.TreatmentActivity;
+
+import java.util.Calendar;
 
 
 public class TreatmentFragment extends Fragment {
@@ -66,34 +71,25 @@ public class TreatmentFragment extends Fragment {
             }
         });
 
-//        Context context = getActivity().getApplicationContext();
-//        alarmManager = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
-//        Intent intent = new Intent(context, Alar);
+        v.findViewById(R.id.treatmentAlarmButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar offsetTime = Calendar.getInstance();
+                offsetTime.add(Calendar.SECOND, 5);
 
-//        Calendar calendar = Calendar.getInstance();
-//        calendar.setTimeInMillis(System.currentTimeMillis());
-//        calendar.set(Calendar.HOUR_OF_DAY, 16);
-//        calendar.set(Calendar.MINUTE, 6);
-//
-//        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(),
-//                1000 * 60 * 20, alarmIntent);
+                Log.e("Now", Calendar.getInstance().getTime().toString());
+                Log.e("Next", offsetTime.getTime().toString());
 
-//        Button alarmBtn = (Button) view.findViewById(R.id.treatmentButton);
-//        alarmBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                createAlarm("Nastaven budík", 16,37);
-//            }
-//        });
+                Intent goToAlarm = new Intent(context, Alarm.class);
+                goToAlarm.putExtra("Msg", "Zprava 1");
+                PendingIntent pendingIntentAlarm = PendingIntent.getActivity(context, 3, goToAlarm, 0);
+                AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+                am.setExact(AlarmManager.RTC_WAKEUP, offsetTime.getTimeInMillis(), pendingIntentAlarm);
+
+            }
+        });
 
         return v;
     }
 
-//    public void createAlarm(String message, int hour, int minutes) {
-//        Intent intent = new Intent(AlarmClock.ACTION_SET_ALARM)
-//                .putExtra(AlarmClock.EXTRA_MESSAGE, message)
-//                .putExtra(AlarmClock.EXTRA_HOUR, hour)
-//                .putExtra(AlarmClock.EXTRA_MINUTES, minutes);
-//        startActivity(intent);
-//    }
 }
