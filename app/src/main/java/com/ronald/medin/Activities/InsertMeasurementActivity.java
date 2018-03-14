@@ -1,21 +1,15 @@
 package com.ronald.medin.Activities;
 
-import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.ronald.medin.Classes.Doctor;
-import com.ronald.medin.Classes.Measurment;
+import com.ronald.medin.Classes.Measurement;
 import com.ronald.medin.R;
 import com.ronald.medin.SQLite;
 
@@ -43,7 +37,7 @@ public class InsertMeasurementActivity extends AppCompatActivity {
         if(editValue.getText().toString().equals(null)){
             Toast.makeText(getApplicationContext(), "Vyplňte všechna pole", Toast.LENGTH_SHORT).show();
         } else {
-            Measurment newMeasurment = new Measurment(spinnerName.getSelectedItem().toString(), Integer.valueOf(editValue.getText().toString()), spinnerUnit.getSelectedItem().toString());
+            Measurement newMeasurment = new Measurement(spinnerName.getSelectedItem().toString(), Integer.valueOf(editValue.getText().toString()), spinnerUnit.getSelectedItem().toString());
             if(db.insertMeasurement(newMeasurment)) {
                 Toast.makeText(getApplicationContext(), "Měření vloženo úspěšně", Toast.LENGTH_SHORT).show();
 

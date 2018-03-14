@@ -5,15 +5,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.icu.text.SimpleDateFormat;
 
 import com.ronald.medin.Classes.Doctor;
-import com.ronald.medin.Classes.Measurment;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
+import com.ronald.medin.Classes.Measurement;
 
 public class SQLite extends SQLiteOpenHelper {
 
@@ -40,7 +34,7 @@ public class SQLite extends SQLiteOpenHelper {
     public static final String MEASUREMENT_COLUMN_NAME = "name";
     public static final String MEASUREMENT_COLUMN_VALUE = "value";
     public static final String MEASUREMENT_COLUMN_UNIT = "unit";
-    public static final String MEASUREMENT_COLUMN_CREATED = "created";
+    public static final String MEASUREMENT_COLUMN_CREATED = "dateCreated";
 
     //Medicine table names
     public static final String MEDICINE_TABLE_NAME = "Medicine";
@@ -48,7 +42,6 @@ public class SQLite extends SQLiteOpenHelper {
     public static final String MEDICINE_COLUMN_NAME = "name";
     public static final String MEDICINE_COLUMN_TYPE = "type";
     public static final String MEDICINE_COLUMN_PACKAGE_QUANTITY = "package_quantity";
-    public static final String MEDICINE_COLUMN_MEDICINE_INFO_ID = "medicine_info_id";
 
     //Medicine_info table names
     public static final String MEDICINE_INFO_TABLE_NAME = "Medicine_info";
@@ -90,8 +83,7 @@ public class SQLite extends SQLiteOpenHelper {
             + MEDICINE_COLUMN_ID + " INTEGER PRIMARY KEY, "
             + MEDICINE_COLUMN_NAME + " TEXT, "
             + MEDICINE_COLUMN_TYPE + " TEXT, "
-            + MEDICINE_COLUMN_PACKAGE_QUANTITY + " INTEGER, "
-            + MEDICINE_COLUMN_MEDICINE_INFO_ID + " INTEGER"
+            + MEDICINE_COLUMN_PACKAGE_QUANTITY + " INTEGER "
             + ")";
 
     private static final String CREATE_MEDICINE_INFO_TABLE = "CREATE TABLE " + MEDICINE_INFO_TABLE_NAME + "("
@@ -111,7 +103,7 @@ public class SQLite extends SQLiteOpenHelper {
             + ")";
 
     private static final String Paralen =
-            "INSERT INTO " + MEDICINE_TABLE_NAME + "(name, type, package_quantity, medicine_info_id) VALUES ('PARALEN 500','Tablety','24','1')";
+            "INSERT INTO " + MEDICINE_TABLE_NAME + "(name, type, package_quantity) VALUES ('PARALEN 500','Tablety','24')";
     private static final String ParalenInfo =
             "INSERT INTO " + MEDICINE_INFO_TABLE_NAME + "(description, warning, usage_instructions, side_effects, storage_instructions, other_information) VALUES " +
                     "('Paracetamol, léčivá látka přípravku Paralen 500 tablety, působí proti bolesti a snižuje zvýšenou tělesnou teplotu. Tablety Paralen 500 nezhoršují žaludeční potíže a nevyvolávají zvracení, mohou je užít i nemocní se žaludečními a dvanáctníkovými vředy a nemocní, kteří nesnášejí kyselinu acetylsalicylovou.Tablety Paralen 500 jsou určeny ke snížení horečky a bolesti při chřipce, nachlazení a jiných infekčních onemocněních.Tablety Paralen 500 jsou také vhodné při bolestech různého původu, např. při bolestech hlavy, zubů, bolestivé menstruaci, bolesti v krku a bolesti pohybového ústrojí provázející chřipku a nachlazení..Paralen 500 je určen pro dospělé, mladistvé a děti od 6 let věku.','Neužívejte přípravek PARALEN 500 pokud- jste alergický/á (přecitlivělý/á) na účinnou látku nebo na některou pomocnou látku přípravku, - máte vážné onemocnění jater nebo akutní zánět jater - máte typ chudokrevnosti zvaný hemolytická anémiePokud si nejste jisti, zda se vás uvedené týká, poraďte se se svým lékařem.Vzhledem k vysokému obsahu účinné látky nejsou tablety Paralen 500 vhodné pro děti mladší než 6 let (nebo pro děti s tělesnou hmotností menší než 20 kg).\n" +
@@ -217,7 +209,7 @@ public class SQLite extends SQLiteOpenHelper {
                     "Tato příbalová informace byla naposledy schválena 16.4.2010')";
 
     private static final String Olynth =
-            "INSERT INTO " + MEDICINE_TABLE_NAME + "(name, type, package_quantity, medicine_info_id) VALUES ('OLYNTH® 0,1 %','Nosní sprej','10 ml','2')";
+            "INSERT INTO " + MEDICINE_TABLE_NAME + "(name, type, package_quantity) VALUES ('OLYNTH® 0,1 %','Nosní sprej','10 ml')";
     private static final String OlynthInfo =
             "INSERT INTO " + MEDICINE_INFO_TABLE_NAME + "(description, warning, usage_instructions, side_effects, storage_instructions, other_information) VALUES " +
                     "('Léčivá látka přípravku Olynth HA 0,1%, xylometazolin-hydrochlorid, způsobuje v místě svého účinku stažení cév, tím snižuje otok sliznic a následně usnadňuje dýchání nosem a zlepšuje uvolnění hlenů. K nástupu účinku obvykle dochází za 5–10 minut. Pomocná látka natrium-hyaluronát napomáhá zvlhčení nosní sliznice.\n" +
@@ -318,7 +310,7 @@ public class SQLite extends SQLiteOpenHelper {
                     "Tento příbalový leták byl naposledy schválen 24.2.2010.')";
 
     private static final String Ibalgin =
-            "INSERT INTO " + MEDICINE_TABLE_NAME + "(name, type, package_quantity, medicine_info_id) VALUES ('Ibalgin 400mg','Tablety','48','3')";
+            "INSERT INTO " + MEDICINE_TABLE_NAME + "(name, type, package_quantity) VALUES ('Ibalgin 400mg','Tablety','48')";
     private static final String IbalginInfo =
             "INSERT INTO " + MEDICINE_INFO_TABLE_NAME + "(description, warning, usage_instructions, side_effects, storage_instructions, other_information) VALUES " +
                     "('Přípravek Ibalgin 400 obsahuje léčivou látku ibuprofen, která patří do skupiny tzv. nesteroidních protizánětlivých léčiv. Zabraňuje tvorbě tkáňových působků, tzv. prostaglandinů, které jsou odpovědné za vznik bolesti a zánětu a uvolňují se v místě poškození tkáně.\n" +
@@ -461,7 +453,7 @@ public class SQLite extends SQLiteOpenHelper {
                     "9.9.2016')";
 
     private static final String Sinecod =
-            "INSERT INTO " + MEDICINE_TABLE_NAME + "(name, type, package_quantity, medicine_info_id) VALUES ('Sinecodg','Sirup','400ml','4')";
+            "INSERT INTO " + MEDICINE_TABLE_NAME + "(name, type, package_quantity) VALUES ('Sinecodg','Sirup','400ml')";
     private static final String SinecodInfo =
             "INSERT INTO " + MEDICINE_INFO_TABLE_NAME + "(description, warning, usage_instructions, side_effects, storage_instructions, other_information) VALUES " +
                     "('Sinecod obsahuje léčivou látku butamirát citrát, která patří do skupiny léků nazývaných antitusika – léky tlumící\n" +
@@ -593,7 +585,7 @@ public class SQLite extends SQLiteOpenHelper {
                     "Tato příbalová informace byla naposledy revidována: 7. 3. 2017')";
 
     private static final String Coldrex =
-            "INSERT INTO " + MEDICINE_TABLE_NAME + "(name, type, package_quantity, medicine_info_id) VALUES ('Coldrex Horký nápoj','prášek pro perorální roztok v sáčku','14 sáčků','5')";
+            "INSERT INTO " + MEDICINE_TABLE_NAME + "(name, type, package_quantity) VALUES ('Coldrex Horký nápoj','prášek pro perorální roztok v sáčku','14 sáčků')";
 
     private static final String ColdrexInfo =
             "INSERT INTO " + MEDICINE_INFO_TABLE_NAME + "(description, warning, usage_instructions, side_effects, storage_instructions, other_information) VALUES " +
@@ -842,7 +834,7 @@ public class SQLite extends SQLiteOpenHelper {
         db.execSQL(CREATE_MEASUREMENT_TABLE);
         db.execSQL(CREATE_MEDICINE_TABLE);
         db.execSQL(CREATE_MEDICINE_INFO_TABLE);
-        //db.execSQL(CREATE_MEDICINE_MEDICINE_INFO_TABLE);
+        db.execSQL(CREATE_MEDICINE_MEDICINE_INFO_TABLE);
 
         db.execSQL(Paralen);
         db.execSQL(ParalenInfo);
@@ -858,6 +850,12 @@ public class SQLite extends SQLiteOpenHelper {
 
         db.execSQL(Coldrex);
         db.execSQL(ColdrexInfo);
+
+        db.execSQL("INSERT INTO " + MEDICINE_MEDICINE_INFO_TABLE_NAME + "(" + MEDICINE_MEDICINE_INFO_COLUMN_MEDICINE_ID + "," + MEDICINE_MEDICINE_INFO_COLUMN_MEDICINE_INFO_ID + ") VALUES (1,1)");
+        db.execSQL("INSERT INTO " + MEDICINE_MEDICINE_INFO_TABLE_NAME + "(" + MEDICINE_MEDICINE_INFO_COLUMN_MEDICINE_ID + "," + MEDICINE_MEDICINE_INFO_COLUMN_MEDICINE_INFO_ID + ") VALUES (2,2)");
+        db.execSQL("INSERT INTO " + MEDICINE_MEDICINE_INFO_TABLE_NAME + "(" + MEDICINE_MEDICINE_INFO_COLUMN_MEDICINE_ID + "," + MEDICINE_MEDICINE_INFO_COLUMN_MEDICINE_INFO_ID + ") VALUES (3,3)");
+        db.execSQL("INSERT INTO " + MEDICINE_MEDICINE_INFO_TABLE_NAME + "(" + MEDICINE_MEDICINE_INFO_COLUMN_MEDICINE_ID + "," + MEDICINE_MEDICINE_INFO_COLUMN_MEDICINE_INFO_ID + ") VALUES (4,4)");
+        db.execSQL("INSERT INTO " + MEDICINE_MEDICINE_INFO_TABLE_NAME + "(" + MEDICINE_MEDICINE_INFO_COLUMN_MEDICINE_ID + "," + MEDICINE_MEDICINE_INFO_COLUMN_MEDICINE_INFO_ID + ") VALUES (5,5)");
     }
 
     @Override
@@ -926,7 +924,7 @@ public class SQLite extends SQLiteOpenHelper {
 
 
     //Measurement CRUD operations
-    public boolean insertMeasurement(Measurment m){
+    public boolean insertMeasurement(Measurement m){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
@@ -957,6 +955,7 @@ public class SQLite extends SQLiteOpenHelper {
         return db.delete(MEASUREMENT_TABLE_NAME, MEASUREMENT_COLUMN_ID + " = ? ", new String[] {Integer.toString(id)});
     }
 
+    //Medicine CRUD
     public Cursor getMedicine(int id){
         SQLiteDatabase db = getReadableDatabase();
         Cursor query = db.rawQuery("SELECT * FROM " + MEDICINE_TABLE_NAME + " WHERE " +
@@ -972,8 +971,11 @@ public class SQLite extends SQLiteOpenHelper {
 
     public Cursor getMedicine_info(int id){
         SQLiteDatabase db = getReadableDatabase();
-        Cursor query = db.rawQuery("SELECT * FROM " + MEDICINE_INFO_TABLE_NAME + " WHERE " +
-                MEDICINE_INFO_COLUMN_ID + " =?", new String[] { Integer.toString(id) });
+        String queryString = "SELECT * FROM Medicine m " +
+                "INNER JOIN Medicine_Medicine_info mmi ON mmi.medicine_id = m._id " +
+                "INNER JOIN Medicine_info mi ON mi._id = mmi.medicine_info_id " +
+                "WHERE m._id = ?";
+        Cursor query = db.rawQuery(queryString, new String[] {Integer.toString(id)});
         return query;
     }
 

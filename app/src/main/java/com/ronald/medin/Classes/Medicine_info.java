@@ -32,25 +32,31 @@ public class Medicine_info {
 
     //ID
     public int getId() {
+
         return id;
     }
     public void setId(int id) {
+
         this.id = id;
     }
 
     //Description
     public String getDescription() {
+
         return description;
     }
     public void setDescription(String description) {
+
         this.description = description;
     }
 
     //Warning
     public String getWarning() {
+
         return warning;
     }
-    public void setWarning(String warning) {
+    public void setWarning(String warning)
+    {
         this.warning = warning;
     }
 

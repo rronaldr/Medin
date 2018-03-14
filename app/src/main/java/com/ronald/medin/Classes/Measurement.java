@@ -3,25 +3,25 @@ package com.ronald.medin.Classes;
 
 import java.sql.Timestamp;
 
-public class Measurment {
+public class Measurement {
 
     private int id;
     private String measurement_name;
     private int measurement_value;
     private String measurement_unit;
-    private String measurement_created;
+    private String measurement_dateCreated;
 
-    public Measurment(){
+    public Measurement(){
 
     }
-    public Measurment(int Id, String Measurement_name, int Measurement_value, String Measurement_unit){
+    public Measurement(int Id, String Measurement_name, int Measurement_value, String Measurement_unit){
         this.id = Id;
         this.measurement_name = Measurement_name;
         this.measurement_value = Measurement_value;
         this.measurement_unit = Measurement_unit;
     }
 
-    public Measurment(String Measurement_name, int Measurement_value, String Measurement_unit){
+    public Measurement(String Measurement_name, int Measurement_value, String Measurement_unit){
         this.measurement_name = Measurement_name;
         this.measurement_value = Measurement_value;
         this.measurement_unit = Measurement_unit;
@@ -61,9 +61,9 @@ public class Measurment {
 
     //Measurement datetime
     public String getMeasurement_created() {
-        return measurement_created;
+        return measurement_dateCreated;
     }
-    public void setMeasurement_created(String measurement_created) {
-        this.measurement_created = measurement_created;
+    public void setMeasurement_created(String measurement_DateCreated) {
+        this.measurement_dateCreated = measurement_DateCreated;
     }
 }

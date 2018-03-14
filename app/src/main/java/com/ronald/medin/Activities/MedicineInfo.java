@@ -17,7 +17,6 @@ import com.ronald.medin.SQLite;
 public class MedicineInfo extends AppCompatActivity {
 
     int medicineID;
-    int medicine_infoID;
     private SQLite db;
 
     @Override
@@ -41,27 +40,19 @@ public class MedicineInfo extends AppCompatActivity {
         medicineID = getIntent().getIntExtra("ItemID",0);
 
         db = new SQLite(this);
-        Cursor rsmed = db.getMedicine(medicineID);
-        //Log.v("Cursor Object", DatabaseUtils.dumpCursorToString(rsmed));
-        rsmed.moveToFirst();
+        Cursor medicineCursor = db.getMedicine_info(medicineID);
+        medicineCursor.moveToFirst();
+        Log.v("Cursor Object", DatabaseUtils.dumpCursorToString(medicineCursor));
 
-        medName.setText(rsmed.getString(rsmed.getColumnIndex(SQLite.MEDICINE_COLUMN_NAME)));
-        medType.setText(rsmed.getString(rsmed.getColumnIndex(SQLite.MEDICINE_COLUMN_TYPE)));
-        medPackageQuantity.setText(rsmed.getString(rsmed.getColumnIndex(SQLite.MEDICINE_COLUMN_PACKAGE_QUANTITY)));
-
-
-        medicine_infoID = rsmed.getInt(rsmed.getColumnIndex(SQLite.MEDICINE_COLUMN_MEDICINE_INFO_ID));
-
-        Cursor rsmed_info = db.getMedicine_info(medicine_infoID);
-        //Log.v("Cursor Object", DatabaseUtils.dumpCursorToString(rsmed_info));
-        rsmed_info.moveToFirst();
-
-        medDescription.setText(rsmed_info.getString(rsmed_info.getColumnIndex(SQLite.MEDICINE_INFO_COLUMN_DESCRIPTION)));
-        medWarning.setText(rsmed_info.getString(rsmed_info.getColumnIndex(SQLite.MEDICINE_INFO_COLUMN_WARNING)));
-        medUsageInsctructions.setText(rsmed_info.getString(rsmed_info.getColumnIndex(SQLite.MEDICINE_INFO_COLUMN_USAGE_INSTRUCTIONS)));
-        medSideEffects.setText(rsmed_info.getString(rsmed_info.getColumnIndex(SQLite.MEDICINE_INFO_COLUMN_SIDE_EFFECTS)));
-        medStorageInstructions.setText(rsmed_info.getString(rsmed_info.getColumnIndex(SQLite.MEDICINE_INFO_COLUMN_STORAGE_INSTRUCTIONS)));
-        medOtherInformation.setText(rsmed_info.getString(rsmed_info.getColumnIndex(SQLite.MEDICINE_INFO_COLUMN_OTHER_INFORMATION)));
+        medName.setText(medicineCursor.getString(medicineCursor.getColumnIndex(SQLite.MEDICINE_COLUMN_NAME)));
+        medType.setText(medicineCursor.getString(medicineCursor.getColumnIndex(SQLite.MEDICINE_COLUMN_TYPE)));
+        medPackageQuantity.setText(medicineCursor.getString(medicineCursor.getColumnIndex(SQLite.MEDICINE_COLUMN_PACKAGE_QUANTITY)));
+        medDescription.setText(medicineCursor.getString(medicineCursor.getColumnIndex(SQLite.MEDICINE_INFO_COLUMN_DESCRIPTION)));
+        medWarning.setText(medicineCursor.getString(medicineCursor.getColumnIndex(SQLite.MEDICINE_INFO_COLUMN_WARNING)));
+        medUsageInsctructions.setText(medicineCursor.getString(medicineCursor.getColumnIndex(SQLite.MEDICINE_INFO_COLUMN_USAGE_INSTRUCTIONS)));
+        medSideEffects.setText(medicineCursor.getString(medicineCursor.getColumnIndex(SQLite.MEDICINE_INFO_COLUMN_SIDE_EFFECTS)));
+        medStorageInstructions.setText(medicineCursor.getString(medicineCursor.getColumnIndex(SQLite.MEDICINE_INFO_COLUMN_STORAGE_INSTRUCTIONS)));
+        medOtherInformation.setText(medicineCursor.getString(medicineCursor.getColumnIndex(SQLite.MEDICINE_INFO_COLUMN_OTHER_INFORMATION)));
 
     }
 

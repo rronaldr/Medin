@@ -41,6 +41,8 @@ public class MedsFragment extends Fragment {
 
         setListViewItemsSource();
 
+        Log.v("---------------", "LOGCAT TEST");
+
         medsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
@@ -77,7 +79,7 @@ public class MedsFragment extends Fragment {
 
         int[] holders = new int[]{
                 R.id.item_medName,
-                R.id.item_medType
+                R.id.item_medType,
         };
 
         SimpleCursorAdapter medListViewAdapter = new SimpleCursorAdapter(context, R.layout.item_med, meds, columns, holders, 0);
