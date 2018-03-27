@@ -5,66 +5,355 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.ronald.medin.Activities.DoctorInfo"
+    tools:context="com.ronald.medin.Activities.DoctorInfoActivity"
     tools:showIn="@layout/activity_doctor_info">
 
-    <EditText
-        android:id="@+id/doctorinfo_specialization"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textColor="@color/black"
-        android:focusable="false"
-        android:clickable="false"/>
-    <EditText
-        android:id="@+id/doctorinfo_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/doctorinfo_specialization"
-        android:textColor="@color/black"
-        android:focusable="false"
-        android:clickable="false"/>
-    <EditText
-        android:id="@+id/doctorinfo_surname"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:focusable="false"
-        android:textColor="@color/black"
-        android:clickable="false"
-        app:layout_constraintTop_toBottomOf="@id/doctorinfo_name" />
+        android:layout_height="match_parent">
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <EditText
+                android:id="@+id/edit_doctorInfo_style"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/EditTextFormHiddenStyling"/>
+            <TextView
+                android:id="@+id/text_doctorInfo_nameLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/edit_doctorInfo_name"
+                style="@style/LabelStyling"
+                android:text="Jméno: " />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/text_doctorInfo_nameLabel"
+                app:layout_constraintBottom_toBottomOf="@id/text_doctorInfo_nameLabel"
+                app:layout_constraintRight_toLeftOf="@id/text_doctorInfo_nameLabel"
+                android:layout_margin="5dp"
+                android:src="@drawable/ic_menu_people"/>
+            <EditText
+                android:id="@+id/edit_doctorInfo_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/text_doctorInfo_nameLabel"
+                app:layout_constraintTop_toTopOf="@id/text_doctorInfo_nameLabel"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                style="@style/EditTextFormStylingMedium"
+                android:inputType="textCapSentences"
+                android:hint="Jméno" />
+            <TextView
+                android:id="@+id/text_doctorInfo_surnameLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/text_doctorInfo_nameLabel"
+                app:layout_constraintLeft_toLeftOf="@id/text_doctorInfo_nameLabel"
+                style="@style/LabelStyling"
+                android:text="Přijmení: " />
+            <EditText
+                android:id="@+id/edit_doctorInfo_surname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/text_doctorInfo_surnameLabel"
+                app:layout_constraintLeft_toRightOf="@id/text_doctorInfo_surnameLabel"
+                style="@style/EditTextFormStylingMedium"
+                android:inputType="textCapSentences"
+                android:hint="Přujmení: "/>
+            <Spinner
+                android:id="@+id/spinner_doctorInfo_specialization"
+                android:layout_width="@dimen/edit_min_width"
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/spinner_min_height"
+                app:layout_constraintTop_toBottomOf="@id/text_doctorInfo_surnameLabel"
+                app:layout_constraintLeft_toLeftOf="@id/text_doctorInfo_nameLabel"
+                android:entries="@array/insertDoctorSpecializationSpinner"
+                android:enabled="false"
+                android:clickable="false"
+                android:focusable="false"/>
+            <EditText
+                android:id="@+id/edit_doctorInfo_specialization"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Specializace: "
+                android:inputType="textCapSentences"
+                android:minWidth="@dimen/edit_min_width"
+                style="@style/EditTextFormStylingMedium"
+                app:layout_constraintLeft_toLeftOf="@id/text_doctorInfo_nameLabel"
+                app:layout_constraintTop_toBottomOf="@id/spinner_doctorInfo_specialization"
+                android:visibility="gone"/>
+            <TextView
+                android:id="@+id/text_doctorInfo_emailLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/edit_doctorInfo_specialization"
+                app:layout_constraintLeft_toLeftOf="@id/text_doctorInfo_nameLabel"
+                style="@style/LabelStyling"
+                android:text="Email: " />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/text_doctorInfo_emailLabel"
+                app:layout_constraintBottom_toBottomOf="@id/text_doctorInfo_emailLabel"
+                app:layout_constraintRight_toLeftOf="@id/text_doctorInfo_emailLabel"
+                android:layout_margin="5dp"
+                android:src="@drawable/ic_menu_report"/>
+            <EditText
+                android:id="@+id/edit_doctorInfo_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                app:layout_constraintBottom_toBottomOf="@id/text_doctorInfo_emailLabel"
+                app:layout_constraintLeft_toRightOf="@id/text_doctorInfo_emailLabel"
+                style="@style/EditTextFormStylingMedium"
+                android:hint="Email: "/>
+            <TextView
+                android:id="@+id/text_doctorInfo_phoneLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/text_doctorInfo_emailLabel"
+                app:layout_constraintLeft_toLeftOf="@id/text_doctorInfo_nameLabel"
+                style="@style/LabelStyling"
+                android:text="Telefon: " />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/text_doctorInfo_phoneLabel"
+                app:layout_constraintBottom_toBottomOf="@id/text_doctorInfo_phoneLabel"
+                app:layout_constraintRight_toLeftOf="@id/text_doctorInfo_phoneLabel"
+                android:layout_margin="5dp"
+                android:src="@drawable/ic_phone"/>
+            <EditText
+                android:id="@+id/edit_doctorInfo_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                app:layout_constraintBottom_toBottomOf="@id/text_doctorInfo_phoneLabel"
+                app:layout_constraintLeft_toRightOf="@id/text_doctorInfo_phoneLabel"
+                style="@style/EditTextFormStylingMedium"
+                android:hint="Telefon: "/>
+            <TextView
+                android:id="@+id/text_doctorInfo_addressLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/text_doctorInfo_phoneLabel"
+                app:layout_constraintLeft_toLeftOf="@id/text_doctorInfo_nameLabel"
+                style="@style/LabelStyling"
+                android:text="Adresa: " />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/text_doctorInfo_addressLabel"
+                app:layout_constraintBottom_toBottomOf="@id/text_doctorInfo_addressLabel"
+                app:layout_constraintRight_toLeftOf="@id/text_doctorInfo_addressLabel"
+                android:layout_margin="5dp"
+                android:src="@drawable/ic_location_city"/>
+            <EditText
+                android:id="@+id/edit_doctorInfo_city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/text_doctorInfo_addressLabel"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                style="@style/EditTextFormStylingMedium"
+                android:inputType="textCapSentences"
+                android:hint="Město: " />
+            <EditText
+                android:id="@+id/edit_doctorInfo_street"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/edit_doctorInfo_city"
+                app:layout_constraintLeft_toLeftOf="@id/edit_doctorInfo_city"
+                style="@style/EditTextFormStylingMedium"
+                android:inputType="textCapSentences"
+                android:hint="Ulice: "/>
+            <EditText
+                android:id="@+id/edit_doctorInfo_streetNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/edit_doctorInfo_city"
+                app:layout_constraintLeft_toRightOf="@id/edit_doctorInfo_street"
+                style="@style/EditTextFormStylingMedium"
+                android:minWidth="@dimen/edit_min_width_small"
+                android:inputType="number"
+                android:hint="Číslo ulice: "/>
+            <TextView
+                android:id="@+id/text_doctorInfo_monday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pondělí: "
+                style="@style/LabelStyling"
+                app:layout_constraintLeft_toLeftOf="@id/text_doctorInfo_nameLabel"
+                app:layout_constraintTop_toBottomOf="@id/edit_doctorInfo_street" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/text_doctorInfo_monday"
+                app:layout_constraintBottom_toBottomOf="@id/text_doctorInfo_monday"
+                app:layout_constraintRight_toLeftOf="@id/text_doctorInfo_monday"
+                android:layout_margin="5dp"
+                android:src="@drawable/ic_time"/>
+            <EditText
+                android:id="@+id/edit_doctorInfo_mondayFrom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Od:"
+                android:inputType="numberDecimal"
+                style="@style/EditTextFormStylingMedium"
+                app:layout_constraintBottom_toBottomOf="@id/text_doctorInfo_monday"
+                app:layout_constraintLeft_toRightOf="@id/text_doctorInfo_monday"/>
 
-    <Button
-        android:id="@+id/doctorinfo_editBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/doctorinfo_surname"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:inputType="textPersonName"
-        android:text="Změnit"
-        android:onClick="EditDoctor"/>
+            <EditText
+                android:id="@+id/edit_doctorInfo_mondayTo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Do:"
+                android:inputType="numberDecimal"
+                style="@style/EditTextFormStylingMedium"
+                app:layout_constraintBottom_toBottomOf="@id/text_doctorInfo_monday"
+                app:layout_constraintLeft_toRightOf="@id/edit_doctorInfo_mondayFrom" />
+            <TextView
+                android:id="@+id/text_doctorInfo_tuesday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Úterý: "
+                style="@style/LabelStyling"
+                app:layout_constraintLeft_toLeftOf="@id/text_doctorInfo_nameLabel"
+                app:layout_constraintTop_toBottomOf="@id/text_doctorInfo_monday" />
+            <EditText
+                android:id="@+id/edit_doctorInfo_tuesdayFrom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Od:"
+                android:inputType="numberDecimal"
+                style="@style/EditTextFormStylingMedium"
+                app:layout_constraintBottom_toBottomOf="@id/text_doctorInfo_tuesday"
+                app:layout_constraintLeft_toLeftOf="@id/edit_doctorInfo_mondayFrom" />
+            <EditText
+                android:id="@+id/edit_doctorInfo_tuesdayTo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Do:"
+                android:inputType="numberDecimal"
+                style="@style/EditTextFormStylingMedium"
+                app:layout_constraintBottom_toBottomOf="@id/text_doctorInfo_tuesday"
+                app:layout_constraintLeft_toRightOf="@id/edit_doctorInfo_tuesdayFrom" />
+            <TextView
+                android:id="@+id/text_doctorInfo_wednesday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Středa: "
+                style="@style/LabelStyling"
+                app:layout_constraintLeft_toLeftOf="@id/text_doctorInfo_nameLabel"
+                app:layout_constraintTop_toBottomOf="@id/text_doctorInfo_tuesday" />
+            <EditText
+                android:id="@+id/edit_doctorInfo_wednesdayFrom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Od:"
+                android:inputType="numberDecimal"
+                style="@style/EditTextFormStylingMedium"
+                app:layout_constraintBottom_toBottomOf="@id/text_doctorInfo_wednesday"
+                app:layout_constraintLeft_toLeftOf="@id/edit_doctorInfo_mondayFrom" />
+            <EditText
+                android:id="@+id/edit_doctorInfo_wednesdayTo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Do:"
+                android:inputType="numberDecimal"
+                style="@style/EditTextFormStylingMedium"
+                app:layout_constraintBottom_toBottomOf="@id/text_doctorInfo_wednesday"
+                app:layout_constraintLeft_toRightOf="@id/edit_doctorInfo_wednesdayFrom" />
 
-    <Button
-        android:id="@+id/doctorinfo_saveBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/doctorinfo_surname"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:inputType="textPersonName"
-        android:text="Uložit"
-        android:visibility="gone"
-        android:onClick="UpdateDoctor"/>
 
-    <Button
-        android:id="@+id/doctorinfo_deleteBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/doctorinfo_editBtn"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:inputType="textPersonName"
-        android:text="Odstranit"
-        android:onClick="DeleteDoctor"/>
+            <TextView
+                android:id="@+id/text_doctorInfo_thursday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Čtvrtek: "
+                style="@style/LabelStyling"
+                app:layout_constraintLeft_toLeftOf="@id/text_doctorInfo_nameLabel"
+                app:layout_constraintTop_toBottomOf="@id/text_doctorInfo_wednesday" />
+            <EditText
+                android:id="@+id/edit_doctorInfo_thursdayFrom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Od:"
+                android:inputType="numberDecimal"
+                style="@style/EditTextFormStylingMedium"
+                app:layout_constraintBottom_toBottomOf="@id/text_doctorInfo_thursday"
+                app:layout_constraintLeft_toLeftOf="@id/edit_doctorInfo_mondayFrom" />
+            <EditText
+                android:id="@+id/edit_doctorInfo_thursdayTo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Do:"
+                android:inputType="numberDecimal"
+                style="@style/EditTextFormStylingMedium"
+                app:layout_constraintBottom_toBottomOf="@id/text_doctorInfo_thursday"
+                app:layout_constraintLeft_toRightOf="@id/edit_doctorInfo_thursdayFrom" />
+
+
+            <TextView
+                android:id="@+id/text_doctorInfo_friday"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pátek: "
+                style="@style/LabelStyling"
+                app:layout_constraintLeft_toLeftOf="@id/text_doctorInfo_nameLabel"
+                app:layout_constraintTop_toBottomOf="@id/text_doctorInfo_thursday" />
+            <EditText
+                android:id="@+id/edit_doctorInfo_fridayFrom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Od:"
+                android:inputType="numberDecimal"
+                style="@style/EditTextFormStylingMedium"
+                app:layout_constraintBottom_toBottomOf="@id/text_doctorInfo_friday"
+                app:layout_constraintLeft_toLeftOf="@id/edit_doctorInfo_mondayFrom" />
+            <EditText
+                android:id="@+id/edit_doctorInfo_fridayTo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Do:"
+                android:inputType="numberDecimal"
+                style="@style/EditTextFormStylingMedium"
+                app:layout_constraintBottom_toBottomOf="@id/text_doctorInfo_friday"
+                app:layout_constraintLeft_toRightOf="@id/edit_doctorInfo_fridayFrom" />
+            <Button
+                android:id="@+id/btn_doctorInfo_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/text_doctorInfo_friday"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:text="Upravit údaje"
+                android:onClick="editDoctor"/>
+            <Button
+                android:id="@+id/btn_doctorInfo_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/btn_doctorInfo_edit"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:text="Smazat měření"
+                android:onClick="deleteDoctorInfo"
+
+                android:layout_marginBottom="20dp"/>
+            <Button
+                android:id="@+id/btn_doctorInfo_save"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/text_doctorInfo_friday"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:text="Uložit"
+                android:onClick="updateDoctor"
+                android:visibility="gone"/>
+        </android.support.constraint.ConstraintLayout>
+    </ScrollView>
 
 </android.support.constraint.ConstraintLayout>

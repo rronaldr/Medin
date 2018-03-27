@@ -42,7 +42,7 @@ public class HelpFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 NotificationCompat.Builder notification2 = new NotificationCompat.Builder(context);
-                notification2.setSmallIcon(R.mipmap.ic_launcher_round)
+                notification2.setSmallIcon(R.mipmap.ic_launcher)
                         .setContentTitle("Upozornění")
                         .setContentText("Zbývá posledních (5 tablet) Paralen 400")
                         .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))

@@ -2,14 +2,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ronald.medin">
 
-    <uses-permission android:name="android.permission.WAKE_LOCK"></uses-permission>
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:allowBackup="true"
         android:fullBackupContent="true"
-        android:icon="@mipmap/ic_launcher_round"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/application_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
@@ -28,32 +28,33 @@
         <activity
             android:name=".Activities.TreatmentActivity"
             android:configChanges="orientation"
+            android:screenOrientation="portrait"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
         </activity>
         <activity
-            android:name=".Activities.InsertDoctorActivity"
-            android:configChanges="orientation"
-            android:label="@string/title_activity_insert_doctor"
-            android:theme="@style/AppTheme" />
-        <activity
-            android:name=".Activities.DoctorInfo"
+            android:name=".Activities.DoctorInfoActivity"
             android:label="@string/title_activity_doctor_info"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".Activities.MeasurementInfo"
+            android:name=".Activities.MeasurementInfoActivity"
             android:label="@string/title_activity_measurement_info"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".Activities.InsertMeasurementActivity"
             android:label="@string/title_activity_insert_measurement"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".Activities.MedicineInfo"
+            android:name=".Activities.MedicineInfoActivity"
             android:label="@string/title_activity_medicine_info"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
 
         <receiver
@@ -64,6 +65,14 @@
         <activity
             android:name=".Activities.Alarm"
             android:label="@string/title_activity_alarm"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".Activities.InsertDoctorActivity"
+            android:label="@string/title_activity_doctor_insert"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme"></activity>
     </application>
 

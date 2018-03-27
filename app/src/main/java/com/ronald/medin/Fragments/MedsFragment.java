@@ -15,8 +15,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
-import com.ronald.medin.Activities.MedicineInfo;
-import com.ronald.medin.Classes.Medicine_info;
+import com.ronald.medin.Activities.MedicineInfoActivity;
 import com.ronald.medin.R;
 import com.ronald.medin.SQLite;
 
@@ -41,15 +40,13 @@ public class MedsFragment extends Fragment {
 
         setListViewItemsSource();
 
-        Log.v("---------------", "LOGCAT TEST");
-
         medsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
 
                 Cursor itemCursor = (Cursor) medsListView.getItemAtPosition(position);
                 int medID = itemCursor.getInt(itemCursor.getColumnIndex(SQLite.MEDICINE_COLUMN_ID));
-                Intent navigate = new Intent(getActivity(), MedicineInfo.class);
+                Intent navigate = new Intent(getActivity(), MedicineInfoActivity.class);
                 navigate.putExtra("ItemID", medID);
                 getActivity().startActivity(navigate);
             }

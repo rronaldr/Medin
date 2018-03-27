@@ -16,7 +16,7 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
 import com.ronald.medin.Activities.InsertMeasurementActivity;
-import com.ronald.medin.Activities.MeasurementInfo;
+import com.ronald.medin.Activities.MeasurementInfoActivity;
 import com.ronald.medin.R;
 import com.ronald.medin.SQLite;
 
@@ -40,7 +40,7 @@ public class MeasurmentFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_measurment, container, false);
         setRetainInstance(true);
 
-        measurementListView = v.findViewById(R.id.measurementListView);
+        measurementListView = v.findViewById(R.id.list_measurementFragment_measurements);
 
         setListViewItemsSource();
 
@@ -50,13 +50,13 @@ public class MeasurmentFragment extends Fragment {
 
                 Cursor itemCursor = (Cursor) measurementListView.getItemAtPosition(position);
                 int measurementID = itemCursor.getInt(itemCursor.getColumnIndex(SQLite.MEASUREMENT_COLUMN_ID));
-                Intent navigate = new Intent(getActivity(), MeasurementInfo.class);
+                Intent navigate = new Intent(getActivity(), MeasurementInfoActivity.class);
                 navigate.putExtra("ItemID", measurementID);
                 getActivity().startActivity(navigate);
             }
         });
 
-        v.findViewById(R.id.btnNewMeasurement).setOnClickListener(new View.OnClickListener() {
+        v.findViewById(R.id.btn_measurementFragment_new).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent navigate = new Intent(getActivity(), InsertMeasurementActivity.class);

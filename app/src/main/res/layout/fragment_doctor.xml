@@ -3,72 +3,30 @@
     android:layout_height="match_parent"
     tools:context="com.ronald.medin.Fragments.DoctorFragment">
 
-
-        <ListView
-            android:id="@+id/doctorListView"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/toolbar"
-            android:divider="@null"
-            android:dividerHeight="0dp" />
-
+    <LinearLayout
+        android:id="@+id/linear_DoctorFragment"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true">
         <Button
-            android:id="@+id/btnNewDoctor"
+            android:id="@+id/btn_doctorFragment_new"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@id/doctorListView"
             android:layout_margin="10dp"
             android:text="Insert new" />
-
-
-    <!-- <EditText
-        android:id="@+id/doctorNumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentTop="true"
-        android:ems="10"
-        android:layout_marginTop="80dp"
-        android:inputType="phone"
-        android:hint="Telefonní číslo" />
-    <EditText
-        android:id="@+id/doctorEmail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="120dp"
-        android:ems="10"
-        android:inputType="textEmailAddress"
-        android:hint="E-mail"
-        />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true">
-
-        <Button
-            android:id="@+id/callButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Call Doctor" />
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
+    <ListView
+        android:id="@+id/list_doctorFragment_doctors"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/linearLayout">
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:divider="@null"
+        android:dividerHeight="0dp"
+        android:layout_above="@id/linear_DoctorFragment" />
 
-        <Button
-            android:id="@+id/emailButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
-            android:text="Email Doctor" />
-    </LinearLayout> -->
 
 </RelativeLayout>

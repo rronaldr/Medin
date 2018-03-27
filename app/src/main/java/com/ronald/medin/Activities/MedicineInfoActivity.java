@@ -14,7 +14,7 @@ import android.widget.TextView;
 import com.ronald.medin.R;
 import com.ronald.medin.SQLite;
 
-public class MedicineInfo extends AppCompatActivity {
+public class MedicineInfoActivity extends AppCompatActivity {
 
     int medicineID;
     private SQLite db;
@@ -40,7 +40,7 @@ public class MedicineInfo extends AppCompatActivity {
         medicineID = getIntent().getIntExtra("ItemID",0);
 
         db = new SQLite(this);
-        Cursor medicineCursor = db.getMedicine_info(medicineID);
+        Cursor medicineCursor = db.getMedicine(medicineID);
         medicineCursor.moveToFirst();
         Log.v("Cursor Object", DatabaseUtils.dumpCursorToString(medicineCursor));
 

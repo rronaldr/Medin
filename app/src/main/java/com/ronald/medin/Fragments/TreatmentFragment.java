@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.ronald.medin.Activities.Alarm;
 import com.ronald.medin.Alarms.AlarmReceiver;
@@ -56,7 +57,7 @@ public class TreatmentFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 NotificationCompat.Builder notification = new NotificationCompat.Builder(context);
-                notification.setSmallIcon(R.mipmap.ic_launcher_round)
+                notification.setSmallIcon(R.mipmap.ic_launcher)
                         .setContentTitle("Vzít si léky")
                         .setContentText("Paralen 400mg")
                         .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE))
@@ -85,6 +86,8 @@ public class TreatmentFragment extends Fragment {
                 PendingIntent pendingIntentAlarm = PendingIntent.getActivity(context, 3, goToAlarm, 0);
                 AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
                 am.setExact(AlarmManager.RTC_WAKEUP, offsetTime.getTimeInMillis(), pendingIntentAlarm);
+
+                Toast.makeText(context, "Alarm set", Toast.LENGTH_SHORT);
 
             }
         });

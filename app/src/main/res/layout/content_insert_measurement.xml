@@ -9,65 +9,66 @@
     tools:showIn="@layout/activity_insert_measurement">
 
     <Spinner
-        android:id="@+id/insertMeasurement_NameSpinner"
+        android:id="@+id/spinner_insertMeasurement_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:minWidth="300dp"
-        android:minHeight="35dp"
+        android:minWidth="@dimen/edit_min_width"
+        android:minHeight="@dimen/spinner_min_height"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         android:entries="@array/insertMeasurementNameSpinner">
     </Spinner>
 
     <EditText
-        android:visibility="invisible"
-        app:layout_constraintTop_toBottomOf="@id/insertMeasurement_NameSpinner"
-        android:id="@+id/insertMeasurement_EditName"
+        android:id="@+id/edit_insertMeasurement_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:minWidth="300dp"
+        android:minWidth="@dimen/edit_min_width"
         android:hint="Druh měření"
+        app:layout_constraintTop_toBottomOf="@id/spinner_insertMeasurement_name"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"/>
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:visibility="gone" />
     <EditText
-        android:id="@+id/insertMeasurement_EditValue"
+        android:id="@+id/edit_insertMeasurement_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:minWidth="200dp"
         android:hint="Hodnota"
-        app:layout_constraintTop_toBottomOf="@id/insertMeasurement_EditName"
-        app:layout_constraintLeft_toLeftOf="@id/insertMeasurement_EditName"/>
+        app:layout_constraintTop_toBottomOf="@id/edit_insertMeasurement_name"
+        app:layout_constraintLeft_toLeftOf="@id/spinner_insertMeasurement_name"/>
     <Spinner
-        android:id="@+id/insertMeasurement_UnitSpinner"
+        android:id="@+id/spinner_insertMeasurement_unit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/insertMeasurement_EditName"
-        app:layout_constraintBottom_toBottomOf="@id/insertMeasurement_EditValue"
-        android:minWidth="100dp"
-        app:layout_constraintLeft_toRightOf="@id/insertMeasurement_EditValue"
+        app:layout_constraintTop_toBottomOf="@id/edit_insertMeasurement_name"
+        app:layout_constraintBottom_toBottomOf="@id/edit_insertMeasurement_value"
+        app:layout_constraintLeft_toRightOf="@id/edit_insertMeasurement_value"
+        android:minHeight="@dimen/spinner_min_height"
         android:entries="@array/insertMeasurementUnitSpinner"
         >
     </Spinner>
 
     <EditText
-        android:visibility="invisible"
-        android:id="@+id/insertMeasurement_EditUnit"
+        android:id="@+id/edit_insertMeasurement_unit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/insertMeasurement_UnitSpinner"
-        android:minWidth="100dp"
-        android:text="Jednotka"
-        app:layout_constraintLeft_toRightOf="@id/insertMeasurement_EditValue"/>
+        app:layout_constraintTop_toBottomOf="@id/spinner_insertMeasurement_unit"
+        app:layout_constraintLeft_toRightOf="@id/edit_insertMeasurement_value"
+        android:minWidth="@dimen/edit_min_width_small"
+        android:hint="Jednotka"
+        android:visibility="gone" />
 
     <Button
-        android:id="@+id/insertMeasurement_ButtonSave"
+        android:id="@+id/btn_insertMeasurement_save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Uložit"
-        android:onClick="InsertMeasurement"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        android:text="Uložit"
+        android:onClick="InsertMeasurement"
+
         android:layout_marginBottom="20dp"
         />
 

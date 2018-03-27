@@ -10,4 +10,10 @@
     <string name="title_activity_insert_measurement">InsertMeasurement</string>
     <string name="title_activity_medicine_info">MedicineInfo</string>
     <string name="title_activity_alarm">Alarm</string>
+    <string name="title_activity_doctor_insert">DoctorInsertActivity</string>
+
+
+    <!-- My strings -->
+    <string name="custom">Jiné</string>
+
 </resources>

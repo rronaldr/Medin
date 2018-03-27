@@ -3,21 +3,31 @@
     android:layout_height="match_parent"
     tools:context="com.ronald.medin.Fragments.MeasurmentFragment">
 
-    <ListView
-        android:id="@+id/measurementListView"
-        android:layout_width="fill_parent"
+    <LinearLayout
+        android:id="@+id/linear_MeasurementFragment"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/toolbar"
-        android:divider="@null"
-        android:dividerHeight="0dp" />
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true">
+        <Button
+            android:id="@+id/btn_measurementFragment_new"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Insert new" />
+    </LinearLayout>
 
-    <Button
-        android:id="@+id/btnNewMeasurement"
-        android:layout_width="wrap_content"
+    <ListView
+        android:id="@+id/list_measurementFragment_measurements"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/measurementListView"
-        android:layout_margin="10dp"
-        android:text="Insert new" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:divider="@null"
+        android:dividerHeight="0dp"
+        android:layout_above="@id/linear_MeasurementFragment" />
+
+
 
 </RelativeLayout>

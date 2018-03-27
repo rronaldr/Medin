@@ -14,9 +14,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
-import android.widget.TextView;
 
-import com.ronald.medin.Activities.DoctorInfo;
+import com.ronald.medin.Activities.DoctorInfoActivity;
 import com.ronald.medin.Activities.InsertDoctorActivity;
 import com.ronald.medin.R;
 import com.ronald.medin.SQLite;
@@ -37,7 +36,7 @@ public class DoctorFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_doctor, container, false);
         setRetainInstance(true);
 
-        doctorListView = v.findViewById(R.id.doctorListView);
+        doctorListView = v.findViewById(R.id.list_doctorFragment_doctors);
 
         setListViewItemsSource();
 
@@ -47,13 +46,13 @@ public class DoctorFragment extends Fragment {
 
                 Cursor itemCursor = (Cursor) doctorListView.getItemAtPosition(position);
                 int doctorID = itemCursor.getInt(itemCursor.getColumnIndex(SQLite.DOCTOR_COLUMN_ID));
-                Intent navigate = new Intent(getActivity(), DoctorInfo.class);
+                Intent navigate = new Intent(getActivity(), DoctorInfoActivity.class);
                 navigate.putExtra("ItemID", doctorID);
                 getActivity().startActivity(navigate);
             }
         });
 
-        v.findViewById(R.id.btnNewDoctor).setOnClickListener(new View.OnClickListener() {
+        v.findViewById(R.id.btn_doctorFragment_new).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent navigate = new Intent(getActivity(), InsertDoctorActivity.class);
@@ -122,6 +121,8 @@ public class DoctorFragment extends Fragment {
         SimpleCursorAdapter doctorListViewAdapter = new SimpleCursorAdapter(context, R.layout.item_doctor, doctors, columns, holders, 0);
         doctorListViewAdapter.notifyDataSetChanged();
         doctorListView.setAdapter(doctorListViewAdapter);
+
+        db.close();
     }
 
 

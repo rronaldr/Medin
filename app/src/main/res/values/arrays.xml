@@ -1,17 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="insertMeasurementNameSpinner">
-        <item>Váha</item>
-        <item>Tlak</item>
-        <item>Hladina cukru v krvi</item>
-        <item>Frekvence tepu</item>
-        <item>Vlastní</item>
+
+    <string-array name="insertDoctorSpecializationSpinner">
+        <item>Alergologie</item>
+        <item>Dermatologie</item>
+        <item>Embryologie</item>
+        <item>Endokrinologie</item>
+        <item>Fyziologie</item>
+        <item>Fyzioterapie</item>
+        <item>Gynekologie</item>
+        <item>Hematologie</item>
+        <item>Hepatologie</item>
+        <item>Chirurgie</item>
+        <item>Kardiologie</item>
+        <item>Logopedie</item>
+        <item>Neurologie</item>
+        <item>Onkologie</item>
+        <item>Onkologie</item>
+        <item>Patologie</item>
+        <item>Pediatrie</item>
+        <item>Psychyatrie</item>
+        <item>Revmatologie</item>
+        <item>Sexuologie</item>
+        <item>Stomatologie</item>
+        <item>Urologie</item>
+        <item>@string/custom</item>
     </string-array>
+
+    <string-array name="insertMeasurementNameSpinner">
+        <item>Tělesný tuk</item>
+        <item>Kroků za den</item>
+        <item>Hmotnost</item>
+        <item>Krevní tlak</item>
+        <item>Pulz</item>
+        <item>Teplota</item>
+        <item>@string/custom</item>
+    </string-array>
+
     <string-array name="insertMeasurementUnitSpinner">
-        <item>Kg</item>
-        <item>mmol/l</item>
-        <item>tep/min</item>
-        <item>Vlastní</item>
+        <item>%</item>
+        <item>kroků</item>
+        <item>kg</item>
+        <item>mmHg</item>
+        <item>bmp</item>
+        <item>°C</item>
+        <item>@string/custom</item>
         <item>-</item>
     </string-array>
 </resources>
