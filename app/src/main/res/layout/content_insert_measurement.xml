@@ -23,7 +23,7 @@
         android:id="@+id/edit_insertMeasurement_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:minWidth="@dimen/edit_min_width"
+        android:minWidth="190dp"
         android:hint="Druh měření"
         app:layout_constraintTop_toBottomOf="@id/spinner_insertMeasurement_name"
         app:layout_constraintRight_toRightOf="parent"
@@ -33,10 +33,12 @@
         android:id="@+id/edit_insertMeasurement_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:minWidth="200dp"
+        android:minWidth="190dp"
         android:hint="Hodnota"
+        android:inputType="number"
         app:layout_constraintTop_toBottomOf="@id/edit_insertMeasurement_name"
-        app:layout_constraintLeft_toLeftOf="@id/spinner_insertMeasurement_name"/>
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
     <Spinner
         android:id="@+id/spinner_insertMeasurement_unit"
         android:layout_width="wrap_content"

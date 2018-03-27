@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,6 +18,7 @@ import android.widget.SimpleCursorAdapter;
 
 import com.ronald.medin.Activities.DoctorInfoActivity;
 import com.ronald.medin.Activities.InsertDoctorActivity;
+import com.ronald.medin.Activities.InsertTreatmentActivity;
 import com.ronald.medin.R;
 import com.ronald.medin.SQLite;
 
@@ -40,6 +42,8 @@ public class DoctorFragment extends Fragment {
 
         setListViewItemsSource();
 
+        FloatingActionButton fab =  v.findViewById(R.id.fab_doctorFragment);
+
         doctorListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
@@ -52,7 +56,7 @@ public class DoctorFragment extends Fragment {
             }
         });
 
-        v.findViewById(R.id.btn_doctorFragment_new).setOnClickListener(new View.OnClickListener() {
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent navigate = new Intent(getActivity(), InsertDoctorActivity.class);
@@ -60,7 +64,6 @@ public class DoctorFragment extends Fragment {
                 getActivity().startActivity(navigate);
             }
         });
-
 
 
 //        final EditText doctorNumber = (EditText)v.findViewById(R.id.doctorNumber);

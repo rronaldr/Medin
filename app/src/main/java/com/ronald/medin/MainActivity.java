@@ -1,6 +1,7 @@
 package com.ronald.medin;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.res.AssetManager;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -26,11 +27,15 @@ import com.ronald.medin.Fragments.SettingsFragment;
 import com.ronald.medin.Fragments.TreatmentFragment;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.util.ArrayList;
 
 import static com.ronald.medin.SQLite.MEDICINE_COLUMN_ID;
 import static com.ronald.medin.SQLite.MEDICINE_COLUMN_NAME;
@@ -55,6 +60,8 @@ public class MainActivity extends AppCompatActivity
 
     NavigationView navigationView = null;
     Toolbar toolbar = null;
+    private SQLite mSQLite;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,13 +85,17 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        SQLite db = new SQLite(getApplicationContext());
-        if(db.checkIfMedicineEmpty() && db.checkIfMedicine_infoEmpty() && db.checkIfMedicine_Medicine_infoEmpty()){
-//            insertMedicineAssetIntoDb(db);
-//            insertMedicine_infoAssetIntoDb(db);
-//            insertMedicine_Medicine_infoAssetIntoDb(db);
-        }
+        mSQLite = new SQLite(this);
 
+        File databaseFile = getApplicationContext().getDatabasePath(SQLite.DB_NAME);
+        if(false == databaseFile.exists()){
+            mSQLite.getReadableDatabase();
+            if(copyDatabase(this)){
+                Log.e("COPY", "SUCCESS");
+            } else {
+                Log.e("COPY", "FAIL");
+            }
+        }
     }
 
     @Override
@@ -157,116 +168,25 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    public void insertMedicineAssetIntoDb(SQLite db) {
-        db = new SQLite(getApplicationContext());
-        SQLiteDatabase database = db.getReadableDatabase();
-
-        AssetManager manager = getApplicationContext().getAssets();
-        InputStream inputStreamMedicine = null;
+    private boolean copyDatabase(Context ctx){
         try {
-            inputStreamMedicine = manager.open("Medicine.csv");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        BufferedReader bufferMedicine = new BufferedReader(new InputStreamReader(inputStreamMedicine));
-        String line = "";
-        String tableName = MEDICINE_TABLE_NAME;
-        String columns = "_id, name, type, package_quantity";
-        String str1 = "INSERT INTO " + tableName + " (" + columns + ") values(";
-        String str2 = ");";
-
-        database.beginTransaction();
-        try {
-            while ((line = bufferMedicine.readLine()) != null) {
-                StringBuilder sb = new StringBuilder(str1);
-                String[] str = line.split(";");
-                sb.append("'" + str[0] + "',");
-                sb.append(str[1] + "',");
-                sb.append(str[2] + "',");
-                sb.append(str[3] + "'");
-                sb.append(str2);
-                Log.e("SQL", sb.toString());
-                //database.execSQL(sb.toString());
+            InputStream inputStream = ctx.getAssets().open(SQLite.DB_NAME);
+            String outFileName = ctx.getDatabasePath(SQLite.DB_NAME).toString();
+            OutputStream outputStream = new FileOutputStream(outFileName);
+            byte[] buff = new byte[1024];
+            int lenght = 0;
+            while ((lenght = inputStream.read(buff)) > 0){
+                outputStream.write(buff, 0, lenght);
             }
+            outputStream.flush();
+            outputStream.close();
+            Log.w("MAIN ACT", "DB COPIED");
+
+            return true;
+
         } catch (IOException e) {
             e.printStackTrace();
+            return false;
         }
-        database.setTransactionSuccessful();
-        database.endTransaction();
-    }
-    public void insertMedicine_infoAssetIntoDb(SQLite db){
-        db = new SQLite(getApplicationContext());
-        SQLiteDatabase database = db.getReadableDatabase();
-
-        AssetManager manager = getApplicationContext().getAssets();
-        InputStream inputStreamMedicine_info = null;
-        try {
-            inputStreamMedicine_info = manager.open("Medicine_info.csv");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        BufferedReader bufferMedicine_info = new BufferedReader(new InputStreamReader(inputStreamMedicine_info));
-        String line = "";
-        String tableName = MEDICINE_INFO_TABLE_NAME;
-        String columns = "_id, description, warning, usage_instructions, side_effects, storage_instructions, other_information";
-        String str1 = "INSERT INTO " + tableName + " (" + columns + ") values(";
-        String str2 = ");";
-
-        database.beginTransaction();
-        try {
-            while ((line = bufferMedicine_info.readLine()) != null) {
-                StringBuilder sb = new StringBuilder(str1);
-                String[] str = line.split(";");
-                sb.append("'" + str[0] + "',");
-                sb.append(str[1] + "',");
-                sb.append(str[2] + "',");
-                sb.append(str[3] + "',");
-                sb.append(str[4] + "',");
-                sb.append(str[5] + "',");
-                sb.append(str[6] + "'");
-                sb.append(str2);
-                Log.e("SQL", sb.toString());
-                //database.execSQL(sb.toString());
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        database.setTransactionSuccessful();
-        database.endTransaction();
-    }
-    public void insertMedicine_Medicine_infoAssetIntoDb(SQLite db){
-        db = new SQLite(getApplicationContext());
-        SQLiteDatabase database = db.getReadableDatabase();
-
-        AssetManager manager = getApplicationContext().getAssets();
-
-        InputStream inputStreamMedicine_Medicine_info = null;
-        try {
-            inputStreamMedicine_Medicine_info = manager.open("Medicine_Medicine_info.csv");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        BufferedReader bufferMedicine_Medicine_info = new BufferedReader(new InputStreamReader(inputStreamMedicine_Medicine_info));
-        String line = "";
-        database.beginTransaction();
-
-        try {
-            while ((line = bufferMedicine_Medicine_info.readLine()) != null) {
-                String[] columsMedicine_Medicine_info = line.split(";");
-
-                ContentValues valuesMedicine_Medicine_info = new ContentValues();
-                valuesMedicine_Medicine_info.put(MEDICINE_MEDICINE_INFO_COLUMN_ID, columsMedicine_Medicine_info[0].trim());
-                valuesMedicine_Medicine_info.put(MEDICINE_MEDICINE_INFO_COLUMN_MEDICINE_ID, columsMedicine_Medicine_info[1].trim());
-                valuesMedicine_Medicine_info.put(MEDICINE_MEDICINE_INFO_COLUMN_MEDICINE_INFO_ID, columsMedicine_Medicine_info[2].trim());
-                database.insert(MEDICINE_MEDICINE_INFO_TABLE_NAME, null, valuesMedicine_Medicine_info);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        database.setTransactionSuccessful();
-        database.endTransaction();
     }
 }

@@ -20,6 +20,8 @@ import com.ronald.medin.Activities.MeasurementInfoActivity;
 import com.ronald.medin.R;
 import com.ronald.medin.SQLite;
 
+import java.io.IOException;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -77,6 +79,7 @@ public class MeasurmentFragment extends Fragment {
     public void setListViewItemsSource(){
 
         final Context context = getActivity().getApplicationContext();
+
         SQLite db = new SQLite(context);
         final Cursor measurements = db.getAllMeasurements();
         Log.v("Cursor Object", DatabaseUtils.dumpCursorToString(measurements));

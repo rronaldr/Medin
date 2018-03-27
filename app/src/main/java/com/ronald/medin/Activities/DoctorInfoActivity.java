@@ -142,25 +142,6 @@ public class DoctorInfoActivity extends AppCompatActivity {
         addressStreetEdit.setText(doctorInfoQuery.getString(doctorInfoQuery.getColumnIndex(SQLite.ADDRESS_COLUMN_STREET)));
         addressStreetNumberEdit.setText(doctorInfoQuery.getString(doctorInfoQuery.getColumnIndex(SQLite.ADDRESS_COLUMN_STREET_NUMBER)));
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.insertDoctorSpecializationSpinner, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        doctorSpecializationSpinner.setAdapter(adapter);
-
-        if (doctorSpecialization != null) {
-            if(adapter.getPosition(doctorSpecialization) == -1){
-                int spinnerPosition = adapter.getPosition(getString(R.string.custom));
-                doctorSpecializationSpinner.setSelection(spinnerPosition);
-            } else {
-                int spinnerPosition = adapter.getPosition(doctorSpecialization);
-                doctorSpecializationSpinner.setSelection(spinnerPosition);
-            }
-        }
-        if(doctorSpecializationSpinner.getSelectedItem().toString().equals(getString(R.string.custom))){
-            doctorSpecializationEdit.setVisibility(View.VISIBLE);
-            doctorSpecializationEdit.setText(doctorSpecialization);
-            specializationSource = true;
-
-        }
 
         doctorInfoQuery.close();
         db.close();
@@ -208,9 +189,26 @@ public class DoctorInfoActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
+    protected void onStart() {
+        super.onStart();
 
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.insertDoctorSpecializationSpinner, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        doctorSpecializationSpinner.setAdapter(adapter);
+        if (doctorSpecialization != null) {
+            if(adapter.getPosition(doctorSpecialization) == -1){
+                int spinnerPosition = adapter.getPosition(getString(R.string.custom));
+                doctorSpecializationSpinner.setSelection(spinnerPosition);
+            } else {
+                int spinnerPosition = adapter.getPosition(doctorSpecialization);
+                doctorSpecializationSpinner.setSelection(spinnerPosition);
+            }
+        }
+        if(doctorSpecializationSpinner.getSelectedItem().toString().equals(getString(R.string.custom))){
+            doctorSpecializationEdit.setVisibility(View.VISIBLE);
+            doctorSpecializationEdit.setText(doctorSpecialization);
+            specializationSource = true;
+        }
         doctorSpecializationSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -294,7 +292,7 @@ public class DoctorInfoActivity extends AppCompatActivity {
         whTuesdayFrom.setBackground(drawableEditTextStyle);
         whTuesdayFrom.setFocusableInTouchMode(true);
         whTuesdayTo.setBackground(drawableEditTextStyle);
-        whThursdayTo.setFocusableInTouchMode(true);
+        whTuesdayTo.setFocusableInTouchMode(true);
 
         whWednesdayFrom.setBackground(drawableEditTextStyle);
         whWednesdayFrom.setFocusableInTouchMode(true);

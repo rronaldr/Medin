@@ -19,8 +19,7 @@
 
     <!-- My styles -->
     <style name="LabelStyling">
-        <item name="android:paddingTop">5dp</item>
-        <item name="android:paddingBottom">5dp</item>
+        <item name="android:padding">5dp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">@dimen/text_h2</item>
     </style>

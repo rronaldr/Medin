@@ -40,7 +40,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:hint="Datum přidání"
-        style="@style/EditTextFormStyling" />
+        style="@style/EditTextFormStylingMedium" />
 
     <TextView
         android:id="@+id/text_measurementInfo_nameLabel"
@@ -57,7 +57,7 @@
         app:layout_constraintTop_toBottomOf="@id/edit_measurementInfo_date"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        style="@style/EditTextFormStyling"
+        style="@style/EditTextFormStylingMedium"
         android:hint="Hodnota měření:"
         android:inputType="numberDecimal" />
     <EditText
@@ -66,7 +66,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/text_measurementInfo_dateLabel"
         app:layout_constraintLeft_toRightOf="@id/edit_measurementInfo_value"
-        style="@style/EditTextFormStyling"
+        style="@style/EditTextFormStylingMedium"
         android:hint="Jednotka"/>
 
     <Button

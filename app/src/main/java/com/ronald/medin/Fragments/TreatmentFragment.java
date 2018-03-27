@@ -58,7 +58,7 @@ public class TreatmentFragment extends Fragment {
         final NotificationCompat.Action take = new NotificationCompat.Action(0, "Vzít", takenPending);
         final NotificationCompat.Action delay = new NotificationCompat.Action(0, "Odložit", notTakenPending);
 
-        FloatingActionButton fab =  v.findViewById(R.id.fab);
+        FloatingActionButton fab =  v.findViewById(R.id.fab_treatmentFragment);
 
         v.findViewById(R.id.treatmentButton).setOnClickListener(new View.OnClickListener() {
             @Override

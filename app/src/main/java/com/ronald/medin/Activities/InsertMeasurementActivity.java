@@ -104,11 +104,14 @@ public class InsertMeasurementActivity extends AppCompatActivity {
     public void InsertMeasurement(View view) {
         SQLite db = new SQLite(this);
 
-        if(nameSource && unitSource){
+        if(nameSource){
             measurementName = editName.getText().toString();
-            measurementUnit = editUnit.getText().toString();
         } else {
             measurementName = spinnerName.getSelectedItem().toString();
+        }
+        if (unitSource){
+            measurementUnit = editUnit.getText().toString();
+        } else {
             measurementUnit = spinnerUnit.getSelectedItem().toString();
         }
 
