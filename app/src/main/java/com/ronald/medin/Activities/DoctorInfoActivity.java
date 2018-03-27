@@ -244,11 +244,11 @@ public class DoctorInfoActivity extends AppCompatActivity {
         db.deleteWorking_hours(thursdayId);
         db.deleteWorking_hours(fridayId);
 
-        db.deleteDoctor_Workinh_hours(doctor_working_hoursId1);
-        db.deleteDoctor_Workinh_hours(doctor_working_hoursId2);
-        db.deleteDoctor_Workinh_hours(doctor_working_hoursId3);
-        db.deleteDoctor_Workinh_hours(doctor_working_hoursId4);
-        db.deleteDoctor_Workinh_hours(doctor_working_hoursId5);
+        db.deleteDoctor_Working_hours(doctor_working_hoursId1);
+        db.deleteDoctor_Working_hours(doctor_working_hoursId2);
+        db.deleteDoctor_Working_hours(doctor_working_hoursId3);
+        db.deleteDoctor_Working_hours(doctor_working_hoursId4);
+        db.deleteDoctor_Working_hours(doctor_working_hoursId5);
 
         Toast.makeText(getApplicationContext(), "Doktor vymazán úspěšně", Toast.LENGTH_SHORT).show();
 

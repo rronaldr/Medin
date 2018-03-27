@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.media.RingtoneManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
@@ -17,11 +16,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.ronald.medin.Activities.Alarm;
-import com.ronald.medin.Activities.InsertDoctorActivity;
+import com.ronald.medin.Activities.AlarmActivity;
 import com.ronald.medin.Activities.InsertTreatmentActivity;
-import com.ronald.medin.Activities.MeasurementInfoActivity;
-import com.ronald.medin.Alarms.AlarmReceiver;
 import com.ronald.medin.R;
 import com.ronald.medin.Activities.TreatmentActivity;
 
@@ -88,13 +84,13 @@ public class TreatmentFragment extends Fragment {
                 Log.e("Now", Calendar.getInstance().getTime().toString());
                 Log.e("Next", offsetTime.getTime().toString());
 
-                Intent goToAlarm = new Intent(context, Alarm.class);
+                Intent goToAlarm = new Intent(context, AlarmActivity.class);
                 goToAlarm.putExtra("Msg", "Zprava 1");
                 PendingIntent pendingIntentAlarm = PendingIntent.getActivity(context, 3, goToAlarm, 0);
                 AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
                 am.setExact(AlarmManager.RTC_WAKEUP, offsetTime.getTimeInMillis(), pendingIntentAlarm);
 
-                Toast.makeText(context, "Alarm set", Toast.LENGTH_SHORT);
+                Toast.makeText(context, "AlarmActivity set", Toast.LENGTH_SHORT);
 
             }
         });

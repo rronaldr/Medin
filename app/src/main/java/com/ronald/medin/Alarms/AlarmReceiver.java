@@ -6,7 +6,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-import com.ronald.medin.Activities.Alarm;
+import com.ronald.medin.Activities.AlarmActivity;
 
 public class AlarmReceiver extends BroadcastReceiver {
 
@@ -18,7 +18,7 @@ public class AlarmReceiver extends BroadcastReceiver {
     }
 
     public void SetAlarm(Context context,long alarmTime){
-        Intent goToAlarm = new Intent(context, Alarm.class);
+        Intent goToAlarm = new Intent(context, AlarmActivity.class);
         goToAlarm.putExtra("Msg", "Zprava 1");
         PendingIntent pendingIntentAlarm = PendingIntent.getActivity(context, 3, goToAlarm, 0);
         AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);

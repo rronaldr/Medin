@@ -24,7 +24,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:minWidth="190dp"
-        android:hint="Druh měření"
+        android:maxWidth="190dp"
+        android:hint="@string/measurementType"
         app:layout_constraintTop_toBottomOf="@id/spinner_insertMeasurement_name"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -34,7 +35,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:minWidth="190dp"
-        android:hint="Hodnota"
+        android:maxWidth="190dp"
+        android:hint="@string/value"
         android:inputType="number"
         app:layout_constraintTop_toBottomOf="@id/edit_insertMeasurement_name"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -58,7 +60,8 @@
         app:layout_constraintTop_toBottomOf="@id/spinner_insertMeasurement_unit"
         app:layout_constraintLeft_toRightOf="@id/edit_insertMeasurement_value"
         android:minWidth="@dimen/edit_min_width_small"
-        android:hint="Jednotka"
+        android:maxWidth="70dp"
+        android:hint="@string/unit"
         android:visibility="gone" />
 
     <Button

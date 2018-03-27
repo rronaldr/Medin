@@ -31,7 +31,7 @@
         app:layout_constraintTop_toBottomOf="@id/text_measurementInfo_name"
         app:layout_constraintRight_toLeftOf="@id/edit_measurementInfo_date"
         style="@style/LabelStyling"
-        android:text="Datum přidání:"/>
+        android:text="@string/dateAddedLabel"/>
     <EditText
         android:id="@+id/edit_measurementInfo_date"
         android:layout_width="wrap_content"
@@ -39,7 +39,8 @@
         app:layout_constraintTop_toBottomOf="@id/text_measurementInfo_name"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:hint="Datum přidání"
+        android:hint="@string/dateAdded"
+        android:maxWidth="250dp"
         style="@style/EditTextFormStylingMedium" />
 
     <TextView
@@ -49,7 +50,7 @@
         app:layout_constraintTop_toBottomOf="@id/text_measurementInfo_dateLabel"
         app:layout_constraintLeft_toLeftOf="@id/text_measurementInfo_dateLabel"
         style="@style/LabelStyling"
-        android:text="Hodnota: "/>
+        android:text="@string/valueLabel"/>
     <EditText
         android:id="@+id/edit_measurementInfo_value"
         android:layout_width="wrap_content"
@@ -58,7 +59,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         style="@style/EditTextFormStylingMedium"
-        android:hint="Hodnota měření:"
+        android:hint="@string/value"
         android:inputType="numberDecimal" />
     <EditText
         android:id="@+id/edit_measurementInfo_unit"
@@ -67,7 +68,7 @@
         app:layout_constraintTop_toBottomOf="@id/text_measurementInfo_dateLabel"
         app:layout_constraintLeft_toRightOf="@id/edit_measurementInfo_value"
         style="@style/EditTextFormStylingMedium"
-        android:hint="Jednotka"/>
+        android:hint="@string/unit"/>
 
     <Button
         android:id="@+id/btn_measurementInfo_edit"
@@ -76,7 +77,7 @@
         app:layout_constraintBottom_toTopOf="@id/btn_measurementInfo_delete"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:text="Upravit Hodnotu"
+        android:text="@string/edit"
         android:onClick="editMeasurement"/>
     <Button
         android:id="@+id/btn_measurementInfo_delete"
@@ -85,7 +86,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:text="Smazat měření"
+        android:text="@string/delete"
         android:onClick="deleteMeasurement"
 
         android:layout_marginBottom="20dp"/>
@@ -96,7 +97,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:text="Uložit"
+        android:text="@string/save"
         android:onClick="saveMeasurement"
         android:layout_marginBottom="20dp"
         android:visibility="gone"/>

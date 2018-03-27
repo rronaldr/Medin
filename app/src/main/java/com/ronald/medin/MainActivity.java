@@ -35,7 +35,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import static com.ronald.medin.SQLite.MEDICINE_COLUMN_ID;
 import static com.ronald.medin.SQLite.MEDICINE_COLUMN_NAME;
@@ -90,11 +92,7 @@ public class MainActivity extends AppCompatActivity
         File databaseFile = getApplicationContext().getDatabasePath(SQLite.DB_NAME);
         if(false == databaseFile.exists()){
             mSQLite.getReadableDatabase();
-            if(copyDatabase(this)){
-                Log.e("COPY", "SUCCESS");
-            } else {
-                Log.e("COPY", "FAIL");
-            }
+            copyDatabase(this);
         }
     }
 

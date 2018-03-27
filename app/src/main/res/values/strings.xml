@@ -14,6 +14,58 @@
 
 
     <!-- My strings -->
+
+    <!-- Doctor related strings -->
+    <string name="personName">Jméno</string>
+    <string name="personNameLabel">Jméno: </string>
+    <string name="personSurname">Přijmení</string>
+    <string name="personSurnameLabel">Přijmení: </string>
+    <string name="specialization">Specializace</string>
+    <string name="specializationLabel">Specializace: </string>
+    <string name="email">Email</string>
+    <string name="EmailLabel">Email: </string>
+    <string name="phone">Telefon</string>
+    <string name="phoneLabel">Telefon: </string>
+    <string name="address">Adresa</string>
+    <string name="addressLabel">Adresa: </string>
+    <string name="city">Město</string>
+    <string name="cityLabel">Město: </string>
+    <string name="street">Ulice</string>
+    <string name="streetLabel">Ulice: </string>
+    <string name="streetNumberLabel">Číslo: </string>
+    <string name="monday">Pondělí</string>
+    <string name="tuesday">Úterý</string>
+    <string name="wednesday">Středa</string>
+    <string name="thursday">Čtvrtek</string>
+    <string name="friday">Pátek</string>
+    <string name="from">Od</string>
+    <string name="to">Do</string>
+
+    <!-- Measurement related strings -->
+    <string name="measurementType">Druh měření</string>
+    <string name="value">Hodnota</string>
+    <string name="valueLabel">Hodnota: </string>
+    <string name="unit">Jednotka</string>
+    <string name="dateAdded">Datum přidání</string>
+    <string name="dateAddedLabel">Datum přidání: </string>
+
+    <!-- Medicine_info related strings -->
+    <string name="typeLabel">Typ: </string>
+    <string name="packetQuantityLabel">Počet v balení: </string>
+    <string name="description">Popis</string>
+    <string name="warning">Varování</string>
+    <string name="usageInstructions">Návod k použití</string>
+    <string name="sideEffects">Vedlejší účinky</string>
+    <string name="storageInstructions">Návod k uchovávání</string>
+    <string name="otherInformation">Ostatní informace</string>
+
+    <!-- Operation strings -->
+    <string name="edit">Upravit</string>
+    <string name="delete">Smazat</string>
+    <string name="save">Uložit</string>
+
+    <string name="accept">Přijmout</string>
+    <string name="dismiss">Zamítnout</string>
     <string name="custom">Jiné</string>
     <string name="title_activity_insert_treatment">InsertTreatmentActivity</string>
 
