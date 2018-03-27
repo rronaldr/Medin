@@ -7,6 +7,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.media.RingtoneManager;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
@@ -16,6 +18,9 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.ronald.medin.Activities.Alarm;
+import com.ronald.medin.Activities.InsertDoctorActivity;
+import com.ronald.medin.Activities.InsertTreatmentActivity;
+import com.ronald.medin.Activities.MeasurementInfoActivity;
 import com.ronald.medin.Alarms.AlarmReceiver;
 import com.ronald.medin.R;
 import com.ronald.medin.Activities.TreatmentActivity;
@@ -53,6 +58,8 @@ public class TreatmentFragment extends Fragment {
         final NotificationCompat.Action take = new NotificationCompat.Action(0, "Vzít", takenPending);
         final NotificationCompat.Action delay = new NotificationCompat.Action(0, "Odložit", notTakenPending);
 
+        FloatingActionButton fab =  v.findViewById(R.id.fab);
+
         v.findViewById(R.id.treatmentButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -89,6 +96,14 @@ public class TreatmentFragment extends Fragment {
 
                 Toast.makeText(context, "Alarm set", Toast.LENGTH_SHORT);
 
+            }
+        });
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent h5 = new Intent(getActivity(), InsertTreatmentActivity.class);
+                startActivity(h5);
             }
         });
 

@@ -4,6 +4,9 @@
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
+    <!-- To access Google+ APIs: -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:fullBackupContent="true"
@@ -28,32 +31,31 @@
         <activity
             android:name=".Activities.TreatmentActivity"
             android:configChanges="orientation"
-            android:screenOrientation="portrait"
             android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme">
-        </activity>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".Activities.DoctorInfoActivity"
-            android:label="@string/title_activity_doctor_info"
             android:configChanges="orientation"
+            android:label="@string/title_activity_doctor_info"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".Activities.MeasurementInfoActivity"
-            android:label="@string/title_activity_measurement_info"
             android:configChanges="orientation"
+            android:label="@string/title_activity_measurement_info"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".Activities.InsertMeasurementActivity"
-            android:label="@string/title_activity_insert_measurement"
             android:configChanges="orientation"
+            android:label="@string/title_activity_insert_measurement"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".Activities.MedicineInfoActivity"
-            android:label="@string/title_activity_medicine_info"
             android:configChanges="orientation"
+            android:label="@string/title_activity_medicine_info"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
 
@@ -64,16 +66,20 @@
 
         <activity
             android:name=".Activities.Alarm"
-            android:label="@string/title_activity_alarm"
             android:configChanges="orientation"
+            android:label="@string/title_activity_alarm"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".Activities.InsertDoctorActivity"
-            android:label="@string/title_activity_doctor_insert"
             android:configChanges="orientation"
+            android:label="@string/title_activity_doctor_insert"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".Activities.InsertTreatmentActivity"
+            android:label="@string/title_activity_insert_treatment"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

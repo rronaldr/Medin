@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- My arrays -->
+    <string-array name="insertTreatmentMedicineSpinner">
+        <item>Paralen</item>
+        <item>Inzulin</item>
+        <item>Coldrex</item>
+    </string-array>
+    <string-array name="insertTreatmentModeSpinner">
+        <item>Krátkodobá</item>
+        <item>Permanentní</item>
+    </string-array>
+    <string-array name="insertTreatmentFrequencySpinner">
+        <item>Děnně každých x hodin</item>
+        <item>Denně, x krát za den</item>
+    </string-array>
+
     <string-array name="insertDoctorSpecializationSpinner">
         <item>Alergologie</item>
         <item>Dermatologie</item>

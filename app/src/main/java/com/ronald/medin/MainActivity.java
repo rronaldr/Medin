@@ -80,8 +80,8 @@ public class MainActivity extends AppCompatActivity
 
         SQLite db = new SQLite(getApplicationContext());
         if(db.checkIfMedicineEmpty() && db.checkIfMedicine_infoEmpty() && db.checkIfMedicine_Medicine_infoEmpty()){
-            insertMedicineAssetIntoDb(db);
-            insertMedicine_infoAssetIntoDb(db);
+//            insertMedicineAssetIntoDb(db);
+//            insertMedicine_infoAssetIntoDb(db);
 //            insertMedicine_Medicine_infoAssetIntoDb(db);
         }
 

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.ronald.medin.Activities.InsertTreatmentActivity"
+    tools:showIn="@layout/activity_insert_treatment">
+
+    <Spinner
+        android:id="@+id/spinner_treatmentInsert_medicine"
+        android:layout_width="@dimen/edit_min_width"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:minHeight="@dimen/spinner_min_height"
+        android:entries="@array/insertTreatmentMedicineSpinner" />
+    <Spinner
+        android:id="@+id/spinner_treatmentInsert_mode"
+        android:layout_width="@dimen/edit_min_width"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/spinner_treatmentInsert_medicine"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:minHeight="@dimen/spinner_min_height"
+        android:entries="@array/insertTreatmentModeSpinner" />
+    <EditText
+        android:id="@+id/edit_treatmentInsert_dayCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/spinner_treatmentInsert_mode"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:hint="Počet dnů:"
+        android:minWidth="@dimen/edit_min_width"/>
+    <Spinner
+        android:id="@+id/spinner_treatmentInsert_frequency"
+        android:layout_width="@dimen/edit_min_width"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/edit_treatmentInsert_dayCount"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:minHeight="@dimen/spinner_min_height"
+        android:entries="@array/insertTreatmentFrequencySpinner" />
+    <EditText
+        android:id="@+id/edit_treatmentInsert_reminderValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/spinner_treatmentInsert_frequency"
+        app:layout_constraintLeft_toLeftOf="@id/edit_treatmentInsert_dayCount"
+        android:minWidth="@dimen/edit_min_width"
+        android:hint="Hodnota x:"/>
+    <EditText
+        android:id="@+id/edit_treatmentInsert_quantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="@id/edit_treatmentInsert_dayCount"
+        app:layout_constraintTop_toBottomOf="@id/edit_treatmentInsert_reminderValue"
+        android:minWidth="@dimen/edit_min_width"
+        android:hint="Dávka: "/>
+    <EditText
+        android:id="@+id/edit_treatmentInsert_startTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="@id/edit_treatmentInsert_dayCount"
+        app:layout_constraintTop_toBottomOf="@id/edit_treatmentInsert_quantity"
+        android:minWidth="@dimen/edit_min_width"
+        android:hint="Začátek v: "/>
+    <EditText
+        android:id="@+id/edit_treatmentInsert_endTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="@id/edit_treatmentInsert_dayCount"
+        app:layout_constraintTop_toBottomOf="@id/edit_treatmentInsert_startTime"
+        android:minWidth="@dimen/edit_min_width"
+        android:hint="Konec v: "/>
+    <EditText
+        android:id="@+id/edit_treatmentInsert_inventoryAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="@id/edit_treatmentInsert_dayCount"
+        app:layout_constraintTop_toBottomOf="@id/edit_treatmentInsert_endTime"
+        android:minWidth="@dimen/edit_min_width"
+        android:hint="Počet dávek: "/>
+
+</android.support.constraint.ConstraintLayout>
