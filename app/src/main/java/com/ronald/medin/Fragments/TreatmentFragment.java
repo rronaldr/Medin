@@ -1,34 +1,31 @@
 package com.ronald.medin.Fragments;
 
-import android.app.AlarmManager;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.media.RingtoneManager;
+import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 
-import com.ronald.medin.Activities.AlarmActivity;
 import com.ronald.medin.Activities.InsertTreatmentActivity;
+import com.ronald.medin.Activities.MedicineInfoActivity;
+import com.ronald.medin.Activities.TreatmentInfoActivity;
+import com.ronald.medin.Classes.Treatment_info;
 import com.ronald.medin.R;
-import com.ronald.medin.Activities.TreatmentActivity;
-
-import java.util.Calendar;
+import com.ronald.medin.SQLite;
 
 
 public class TreatmentFragment extends Fragment {
 
-    private AlarmManager alarmManager;
-    private PendingIntent alarmIntent;
-    public static int notificationId = 1;
+    ListView treatmentList;
 
     public TreatmentFragment() {
 
@@ -39,62 +36,29 @@ public class TreatmentFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_treatment, container, false);
 
-        final Context context = getActivity().getApplicationContext();
-        final Intent notIntent = new Intent();
-        final PendingIntent pendingIntent = PendingIntent.getActivity(context,0,notIntent,PendingIntent.FLAG_UPDATE_CURRENT);
 
-        final Intent intentTaken = new Intent(context,TreatmentActivity.class);
-        intentTaken.putExtra("TAKEN","-(x) z inventáře");
-        final PendingIntent takenPending = PendingIntent.getActivity(context,1,intentTaken,PendingIntent.FLAG_UPDATE_CURRENT);
-
-        final Intent intentNotTaken = new Intent(context,TreatmentActivity.class);
-        intentNotTaken.putExtra("TAKEN","Léčba odložena");
-        final PendingIntent notTakenPending = PendingIntent.getActivity(context,2,intentNotTaken,PendingIntent.FLAG_UPDATE_CURRENT);
-
-        final NotificationCompat.Action take = new NotificationCompat.Action(0, "Vzít", takenPending);
-        final NotificationCompat.Action delay = new NotificationCompat.Action(0, "Odložit", notTakenPending);
-
+        //Přiřazení view
+        treatmentList = v.findViewById(R.id.list_treatmentFragment_treatments);
         FloatingActionButton fab =  v.findViewById(R.id.fab_treatmentFragment);
 
-        v.findViewById(R.id.treatmentButton).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NotificationCompat.Builder notification = new NotificationCompat.Builder(context);
-                notification.setSmallIcon(R.mipmap.ic_launcher)
-                        .setContentTitle("Vzít si léky")
-                        .setContentText("Paralen 400mg")
-                        .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE))
-                        .setStyle(new NotificationCompat.BigTextStyle().bigText("Vzít si Paralen 400mg (2 tablety)"))
-                        .setContentIntent(pendingIntent)
-                        .addAction(take)
-                        .addAction(delay)
-                        .setAutoCancel(true);
+        setListViewItemsSource();
 
-                NotificationManager ntfManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-                ntfManager.notify(notificationId,notification.build());
+        //Po kliknutí na položku v listview, přesměruje uživatele na activitu s informacema o dané položce
+        treatmentList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                Cursor itemCursor = (Cursor) treatmentList.getItemAtPosition(position);
+                //Id podle, které se na detaily vyberou správné údaje
+                int treatmentInfoID = itemCursor.getInt(itemCursor.getColumnIndex(SQLite.TREATMENT_INFO_COLUMN_ID));
+                //Intent s navigací na activitu detailu
+                Intent navigate = new Intent(getActivity(), TreatmentInfoActivity.class);
+                navigate.putExtra("ItemID", treatmentInfoID);
+                Log.e("TreattoShow",String.valueOf(treatmentInfoID));
+                getActivity().startActivity(navigate);
             }
         });
 
-        v.findViewById(R.id.treatmentAlarmButton).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Calendar offsetTime = Calendar.getInstance();
-                offsetTime.add(Calendar.SECOND, 5);
-
-                Log.e("Now", Calendar.getInstance().getTime().toString());
-                Log.e("Next", offsetTime.getTime().toString());
-
-                Intent goToAlarm = new Intent(context, AlarmActivity.class);
-                goToAlarm.putExtra("Msg", "Zprava 1");
-                PendingIntent pendingIntentAlarm = PendingIntent.getActivity(context, 3, goToAlarm, 0);
-                AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-                am.setExact(AlarmManager.RTC_WAKEUP, offsetTime.getTimeInMillis(), pendingIntentAlarm);
-
-                Toast.makeText(context, "AlarmActivity set", Toast.LENGTH_SHORT);
-
-            }
-        });
-
+        //onClickListener na floating tlačítko
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -106,4 +70,41 @@ public class TreatmentFragment extends Fragment {
         return v;
     }
 
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        setListViewItemsSource();
+    }
+
+    //Naplní listview daty z db
+    public void setListViewItemsSource(){
+
+        final Context context = getActivity().getApplicationContext();
+        SQLite db = new SQLite(context);
+        //Vybere všechny záznamy o doktorovi z databáze
+        final Cursor treatmentCursor = db.getAllTreatmentInfo();
+
+        //Jaké hodnoty se budou zobrazovat
+        String[] columns = new String[] {
+                SQLite.MEDICINE_COLUMN_NAME,
+                SQLite.TREATMENT_INFO_COLUMN_USAGE_TYPE
+        };
+
+        //View do kterých se vloží hodnoty
+        int[] holders = new int[]{
+                R.id.item_treatmentMedName,
+                R.id.item_treatmentType
+        };
+
+        //Nový adapter pro listview, s definovaným layoutem
+        SimpleCursorAdapter treatmentListViewAdapter = new SimpleCursorAdapter(context, R.layout.item_treatment, treatmentCursor, columns, holders, 0);
+        treatmentListViewAdapter.notifyDataSetChanged();
+        //Settnutí adapteru k listview
+        treatmentList.setAdapter(treatmentListViewAdapter);
+
+        //Ukončení spojení s db
+        db.close();
+    }
 }

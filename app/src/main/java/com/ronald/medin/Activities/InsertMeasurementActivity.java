@@ -16,6 +16,7 @@ import com.ronald.medin.SQLite;
 
 public class InsertMeasurementActivity extends AppCompatActivity {
 
+    //Inicializace proměnných
     String measurementName;
     String measurementUnit;
 
@@ -36,6 +37,7 @@ public class InsertMeasurementActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //Přiřazení k view
         spinnerName = findViewById(R.id.spinner_insertMeasurement_name);
         spinnerUnit = findViewById(R.id.spinner_insertMeasurement_unit);
 
@@ -49,10 +51,13 @@ public class InsertMeasurementActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
+        /**
+         * OnItemSelectedListener pro spinner
+         */
         spinnerName.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
+                //Na základě hodnoty spinneru měření, nastaví spinneru s jednotkami, jedntku vztahující se k měření
                 switch (i){
                     case 0: spinnerUnit.setSelection(i);
                         break;
@@ -69,6 +74,7 @@ public class InsertMeasurementActivity extends AppCompatActivity {
 
                 }
 
+                //Zobrazení a schování editextu na základě hodnoty spinneru
                 if(spinnerName.getSelectedItem().toString().equals(getString(R.string.custom))){
                     editName.setVisibility(View.VISIBLE);
                     nameSource = true;
@@ -83,6 +89,9 @@ public class InsertMeasurementActivity extends AppCompatActivity {
             }
         });
 
+        /**
+         * OnItemSelectedListener pro spinner
+         */
         spinnerUnit.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -101,9 +110,14 @@ public class InsertMeasurementActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * onClick event
+     * @param view tlačítko vložit
+     */
     public void InsertMeasurement(View view) {
         SQLite db = new SQLite(this);
 
+        //Přiřazení hodnot
         if(nameSource){
             measurementName = editName.getText().toString();
         } else {
@@ -115,15 +129,21 @@ public class InsertMeasurementActivity extends AppCompatActivity {
             measurementUnit = spinnerUnit.getSelectedItem().toString();
         }
 
+        //Ověření vstupů
         if(measurementName.matches("") || measurementUnit.matches("") || editValue.getText().toString().matches("")){
-            Toast.makeText(getApplicationContext(), "Vyplňte všechna pole", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), getResources().getString(R.string.fillAllFields), Toast.LENGTH_SHORT).show();
         } else {
+            //Instance objektu
             Measurement measurementToInsert = new Measurement(measurementName, Integer.valueOf(editValue.getText().toString()), measurementUnit);
-            Toast.makeText(getApplicationContext(), "Měření vloženo úspěšně", Toast.LENGTH_SHORT).show();
+            //Zobrazení zprávy uživateli
+            Toast.makeText(getApplicationContext(), getResources().getString(R.string.measurmentInserted), Toast.LENGTH_SHORT).show();
 
+            //Vložení do databáze
             db.insertMeasurement(measurementToInsert);
+            //Ukončení spojení s db
             db.close();
 
+            //Ukonření aktivity po 2s
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {

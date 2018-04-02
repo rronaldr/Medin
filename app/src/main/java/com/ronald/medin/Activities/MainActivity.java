@@ -1,5 +1,6 @@
-package com.ronald.medin;
+package com.ronald.medin.Activities;
 
+import android.Manifest;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.res.AssetManager;
@@ -8,6 +9,7 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -19,12 +21,11 @@ import android.view.MenuItem;
 import com.ronald.medin.Fragments.DoctorFragment;
 import com.ronald.medin.Fragments.HelpFragment;
 import com.ronald.medin.Fragments.InventoryFragment;
-import com.ronald.medin.Fragments.JournalFragment;
 import com.ronald.medin.Fragments.MeasurmentFragment;
 import com.ronald.medin.Fragments.MedsFragment;
-import com.ronald.medin.Fragments.ReportFragment;
-import com.ronald.medin.Fragments.SettingsFragment;
 import com.ronald.medin.Fragments.TreatmentFragment;
+import com.ronald.medin.R;
+import com.ronald.medin.SQLite;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -60,6 +61,7 @@ import static com.ronald.medin.SQLite.MEDICINE_TABLE_NAME;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    //Inicializace proměnných
     NavigationView navigationView = null;
     Toolbar toolbar = null;
     private SQLite mSQLite;
@@ -69,12 +71,15 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Vytvoření fragmentu
         if(savedInstanceState == null){
             TreatmentFragment fragment = new TreatmentFragment();
             android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.frame_container, fragment);
             fragmentTransaction.commit();
         }
+
+        //Přiřazení view
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -87,13 +92,16 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        //Nové spojení s db
         mSQLite = new SQLite(this);
 
         File databaseFile = getApplicationContext().getDatabasePath(SQLite.DB_NAME);
+        //Ověření jestli je vytvořena databáze
         if(false == databaseFile.exists()){
             mSQLite.getReadableDatabase();
             copyDatabase(this);
         }
+
     }
 
     @Override
@@ -112,6 +120,7 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+        //Změna fragmentu
         if (id == R.id.nav_treatment) {
             //Set Fragments
             TreatmentFragment fragment = new TreatmentFragment();
@@ -134,23 +143,8 @@ public class MainActivity extends AppCompatActivity
             android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.frame_container, fragment);
             fragmentTransaction.commit();
-        } else if (id == R.id.nav_journal) {
-            JournalFragment fragment = new JournalFragment();
-            android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.frame_container, fragment);
-            fragmentTransaction.commit();
-        } else if (id == R.id.nav_doctors) {
+        }  else if (id == R.id.nav_doctors) {
             DoctorFragment fragment = new DoctorFragment();
-            android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.frame_container, fragment);
-            fragmentTransaction.commit();
-        } else if (id == R.id.nav_report){
-            ReportFragment fragment = new ReportFragment();
-            android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.frame_container, fragment);
-            fragmentTransaction.commit();
-        } else if (id == R.id.nav_settings){
-            SettingsFragment fragment = new SettingsFragment();
             android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.frame_container, fragment);
             fragmentTransaction.commit();
@@ -166,6 +160,11 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    /**
+     * Vytvoří v prádné databázi tabulky a záznamy z databázového souboru ve složce assets
+     * @param ctx
+     * @return
+     */
     private boolean copyDatabase(Context ctx){
         try {
             InputStream inputStream = ctx.getAssets().open(SQLite.DB_NAME);
@@ -178,8 +177,6 @@ public class MainActivity extends AppCompatActivity
             }
             outputStream.flush();
             outputStream.close();
-            Log.w("MAIN ACT", "DB COPIED");
-
             return true;
 
         } catch (IOException e) {

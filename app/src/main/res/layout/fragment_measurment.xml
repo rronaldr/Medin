@@ -1,22 +1,17 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.ronald.medin.Fragments.MeasurmentFragment">
 
-    <LinearLayout
-        android:id="@+id/linear_MeasurementFragment"
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_measurementFragment"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:layout_alignParentBottom="true">
-        <Button
-            android:id="@+id/btn_measurementFragment_new"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:text="Insert new" />
-    </LinearLayout>
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        app:srcCompat="@drawable/ic_float_add" />
 
     <ListView
         android:id="@+id/list_measurementFragment_measurements"
@@ -25,9 +20,6 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:divider="@null"
-        android:dividerHeight="0dp"
-        android:layout_above="@id/linear_MeasurementFragment" />
+        android:dividerHeight="0dp" />
 
-
-
-</RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>

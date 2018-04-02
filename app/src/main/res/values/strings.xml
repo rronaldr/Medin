@@ -1,19 +1,39 @@
 <resources>
     <string name="app_name">Medin</string>
 
+
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="application_name">Medin</string>
-    <string name="title_activity_insert_doctor">InsertDoctorActivity</string>
-    <string name="title_activity_doctor_info">Doctor</string>
-    <string name="title_activity_measurement_info">MeasurementInfo</string>
-    <string name="title_activity_insert_measurement">InsertMeasurement</string>
-    <string name="title_activity_medicine_info">MedicineInfo</string>
+    <string name="title_activity_inventory_info">@string/activity_inventory_info</string>
+    <string name="title_activity_treatment_info">@string/activity_treatment_info</string>
+    <string name="title_activity_doctor_info">@string/activity_doctor_info</string>
+    <string name="title_activity_measurement_info">@string/activity_measurement_info</string>
+    <string name="title_activity_insert_measurement">@string/activity_insert_measurement</string>
+    <string name="title_activity_medicine_info">@string/activity_medicine_info</string>
     <string name="title_activity_alarm">Alarm</string>
-    <string name="title_activity_doctor_insert">DoctorInsertActivity</string>
+    <string name="title_activity_insert_treatment">@string/activity_insert_treatment</string>
+    <string name="title_activity_doctor_insert">@string/activity_doctor_insert</string>
 
 
     <!-- My strings -->
+    <!-- Activity names -->
+    <string name="activity_doctor_info">Informace o doktorovi</string>
+    <string name="activity_measurement_info">Informace o měření</string>
+    <string name="activity_insert_measurement">Vložit měření</string>
+    <string name="activity_medicine_info">Informace o prášku</string>
+    <string name="activity_alarm">Alarm</string>
+    <string name="activity_doctor_insert">Vložit doktora</string>
+    <string name="activity_inventory_info">Informace o balení</string>
+    <string name="activity_treatment_info">Informace o léčbě</string>
+    <string name="activity_insert_treatment">Vložit léčbu</string>
+
+
+    <!-- Treatment related strings -->
+    <string name="treatmentTypeLabel">Typ léčby: </string>
+    <string name="treatmentDateStartedLabel">Začátek léčby: </string>
+    <string name="treatmentAmountLabel">Počet dávek: </string>
+    <string name="treatmentRemindWhenAmountLabel">Upomenout při zbývajících ks:</string>
 
     <!-- Doctor related strings -->
     <string name="personName">Jméno</string>
@@ -48,6 +68,7 @@
     <string name="unit">Jednotka</string>
     <string name="dateAdded">Datum přidání</string>
     <string name="dateAddedLabel">Datum přidání: </string>
+    <string name="newMeasurement">Nové měření</string>
 
     <!-- Medicine_info related strings -->
     <string name="typeLabel">Typ: </string>
@@ -67,9 +88,47 @@
     <string name="accept">Přijmout</string>
     <string name="dismiss">Zamítnout</string>
     <string name="custom">Jiné</string>
-    <string name="title_activity_insert_treatment">InsertTreatmentActivity</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="pillsOutOfStock">Docházející prášky</string>
+    <string name="lastRemaining">Zbývá posledních </string>
+
+    <string name="doctorDeleted">Doktor vymazán úspěšně</string>
+    <string name="doctorUpdated">Údaje o doktorovi změneny</string>
+    <string name="doctorInsertInputError">Jméno, Přijmění a Specializace musí být vyplněna</string>
+    <string name="insertedSuccessfully">Vložen úspěšně</string>
+    <string name="fillAllFields">Vyplňte všechna pole</string>
+    <string name="measurmentInserted">Měření vloženo úspěšně</string>
+    <string name="fillTreatmentTime">Vyplňte délku léčby</string>
+    <string name="fillTreatmentAmount">Vyplňte množství dávky</string>
+    <string name="fillTreatmentNotify">Vyplňte hodnotu upozornění</string>
+    <string name="treatmentSaved">Léčba uložena úspěšně</string>
+    <string name="treatmentUpdated">Léčba byla úspěšně pozměněna</string>
+    <string name="treatmentInputErrorStartTime">Čas konce nesmí být menší než čas začátku</string>
+    <string name="treatmentInputErrorStartTime2">Začátek musí být zadán</string>
+    <string name="treatmentNumberPickerError">Vyplňtě pole Začátek a Konec</string>
+    <string name="time">Čas</string>
+    <string name="inventorySaved">Inventář změněn úspěšně</string>
+    <string name="measurementDeleted">Měření vymazáno</string>
+    <string name="measurementUpdated">Měření bylo úspěšně pozměněno</string>
+    <string name="measurementValueInputError">Pole s hodnotou je prázdné</string>
+    <string name="treatmentDeleted">Léčba byla vymazána</string>
+    <string name="endOfTreatment">Konec léčby</string>
+    <string name="treatment">Léčba</string>
+    <string name="ended">ukončena</string>
+    <string name="treatmentDurationLabel">Trvání léčby</string>
+    <string name="notificationsPerDay">Počet upozornění za den</string>
+    <string name="startIn">Začátek v</string>
+    <string name="endIn">Konec v</string>
+    <string name="remindOutOfStockInventory">Připomenutí docházející balení</string>
+    <string name="treatmentAmount">Počet dávek na léčbu</string>
+    <string name="treatmentAmountPackage">Počet dávek na v balení</string>
+    <string name="treatmentNote">Poznámka k léčbě</string>
+
+    <string name="meds">Léky</string>
+    <string name="inventory">Inventář</string>
+    <string name="measurement">Měření</string>
+    <string name="doctor">Doktor</string>
+    <string name="help">Nápověda</string>
+
 
 </resources>

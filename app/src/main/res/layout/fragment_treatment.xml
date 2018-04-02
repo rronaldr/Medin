@@ -5,21 +5,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.ronald.medin.Fragments.TreatmentFragment">
 
-    <Button
-        android:id="@+id/treatmentButton"
-        android:layout_width="wrap_content"
+    <ListView
+        android:id="@+id/list_treatmentFragment_treatments"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Treatment"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center"/>
-    <Button
-        android:id="@+id/treatmentAlarmButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Alarm"
-        android:layout_gravity="bottom|center"
-        />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_below="@+id/toolbar"
+        android:divider="@null"
+        android:dividerHeight="0dp" />
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_treatmentFragment"
         android:layout_width="wrap_content"

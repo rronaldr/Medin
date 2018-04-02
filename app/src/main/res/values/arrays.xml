@@ -12,7 +12,7 @@
         <item>Permanentní</item>
     </string-array>
     <string-array name="insertTreatmentFrequencySpinner">
-        <item>Děnně každých x hodin</item>
+        <item>Denně v přesnou hodinu</item>
         <item>Denně, x krát za den</item>
     </string-array>
 

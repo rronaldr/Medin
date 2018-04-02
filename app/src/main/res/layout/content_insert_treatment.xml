@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_insertTreatment"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -39,10 +40,11 @@
                 app:layout_constraintTop_toBottomOf="@id/spinner_treatmentInsert_mode"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                android:hint="Počet dnů:"
+                android:hint="@string/treatmentDurationLabel"
                 android:minWidth="@dimen/edit_min_width"
+                android:inputType="number"
                 android:maxWidth="@dimen/edit_min_width"
-                android:visibility="gone"/>
+                android:visibility="gone" />
             <Spinner
                 android:id="@+id/spinner_treatmentInsert_frequency"
                 android:layout_width="@dimen/edit_min_width"
@@ -53,14 +55,58 @@
                 android:minHeight="@dimen/spinner_min_height"
                 android:entries="@array/insertTreatmentFrequencySpinner" />
             <EditText
+                android:id="@+id/edit_treatmentInsert_repeatAlarmValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="@id/spinner_treatmentInsert_mode"
+                app:layout_constraintTop_toBottomOf="@id/spinner_treatmentInsert_frequency"
+                android:minWidth="@dimen/edit_min_width"
+                android:maxWidth="@dimen/edit_min_width"
+                android:inputType="number"
+                android:focusableInTouchMode="false"
+                android:hint="@string/notificationsPerDay" />
+            <RelativeLayout
+                android:id="@+id/layout_insertTreatment_relative"
+                android:layout_width="@dimen/edit_min_width"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/edit_treatmentInsert_repeatAlarmValue"
+                app:layout_constraintLeft_toLeftOf="@id/spinner_treatmentInsert_mode"/>
+
+            <EditText
+                android:id="@+id/edit_treatmentInsert_startTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:focusableInTouchMode="false"
+                app:layout_constraintLeft_toLeftOf="@id/spinner_treatmentInsert_mode"
+                app:layout_constraintTop_toBottomOf="@id/layout_insertTreatment_relative"
+                android:minWidth="@dimen/edit_min_width"
+                android:maxWidth="@dimen/edit_min_width"
+                android:inputType="time"
+                android:hint="@string/startIn"
+                android:visibility="gone"/>
+            <EditText
+                android:id="@+id/edit_treatmentInsert_endTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:focusableInTouchMode="false"
+                app:layout_constraintLeft_toLeftOf="@id/spinner_treatmentInsert_mode"
+                app:layout_constraintTop_toBottomOf="@id/edit_treatmentInsert_startTime"
+                android:minWidth="@dimen/edit_min_width"
+                android:maxWidth="@dimen/edit_min_width"
+                android:inputType="time"
+                android:hint="@string/endIn"
+                android:visibility="gone"/>
+            <EditText
                 android:id="@+id/edit_treatmentInsert_reminderValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/spinner_treatmentInsert_frequency"
+                app:layout_constraintTop_toBottomOf="@id/edit_treatmentInsert_endTime"
                 app:layout_constraintLeft_toLeftOf="@id/spinner_treatmentInsert_mode"
                 android:minWidth="@dimen/edit_min_width"
                 android:maxWidth="@dimen/edit_min_width"
-                android:hint="Hodnota x:"/>
+                android:inputType="number"
+                android:singleLine="false"
+                android:hint="@string/remindOutOfStockInventory"/>
             <EditText
                 android:id="@+id/edit_treatmentInsert_quantity"
                 android:layout_width="wrap_content"
@@ -69,34 +115,19 @@
                 app:layout_constraintTop_toBottomOf="@id/edit_treatmentInsert_reminderValue"
                 android:minWidth="@dimen/edit_min_width"
                 android:maxWidth="@dimen/edit_min_width"
-                android:hint="Dávka: "/>
+                android:inputType="number"
+                android:hint="@string/treatmentAmount"/>
+
             <EditText
-                android:id="@+id/edit_treatmentInsert_startTime"
+                android:id="@+id/edit_treatmentInsert_inventoryAmount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintLeft_toLeftOf="@id/spinner_treatmentInsert_mode"
                 app:layout_constraintTop_toBottomOf="@id/edit_treatmentInsert_quantity"
                 android:minWidth="@dimen/edit_min_width"
                 android:maxWidth="@dimen/edit_min_width"
-                android:hint="Začátek v: "/>
-            <EditText
-                android:id="@+id/edit_treatmentInsert_endTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintLeft_toLeftOf="@id/spinner_treatmentInsert_mode"
-                app:layout_constraintTop_toBottomOf="@id/edit_treatmentInsert_startTime"
-                android:minWidth="@dimen/edit_min_width"
-                android:maxWidth="@dimen/edit_min_width"
-                android:hint="Konec v: "/>
-            <EditText
-                android:id="@+id/edit_treatmentInsert_inventoryAmount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintLeft_toLeftOf="@id/spinner_treatmentInsert_mode"
-                app:layout_constraintTop_toBottomOf="@id/edit_treatmentInsert_endTime"
-                android:minWidth="@dimen/edit_min_width"
-                android:maxWidth="@dimen/edit_min_width"
-                android:hint="Počet dávek: "/>
+                android:inputType="number"
+                android:hint="@string/treatmentAmountPackage"/>
             <EditText
                 android:id="@+id/edit_treatmentInsert_note"
                 android:layout_width="wrap_content"
@@ -106,15 +137,15 @@
                 android:minHeight="80dp"
                 android:singleLine="false"
                 android:maxWidth="@dimen/edit_min_width"
-                android:hint="Poznámka:"
-                android:scrollHorizontally="false"
+                android:hint="@string/treatmentNote"
                 app:layout_constraintTop_toBottomOf="@id/edit_treatmentInsert_inventoryAmount"
                 app:layout_constraintLeft_toLeftOf="@id/spinner_treatmentInsert_mode" />
             <Button
                 android:id="@+id/btn_treatmentInsert_save"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Uložit"
+                android:text="@string/save"
+                android:onClick="saveTreatment"
                 android:layout_marginTop="10dp"
                 app:layout_constraintTop_toBottomOf="@id/edit_treatmentInsert_note"
                 app:layout_constraintLeft_toLeftOf="parent"

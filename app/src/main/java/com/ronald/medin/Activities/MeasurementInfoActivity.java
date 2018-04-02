@@ -18,6 +18,8 @@ import com.ronald.medin.SQLite;
 
 public class MeasurementInfoActivity extends AppCompatActivity {
 
+
+    //Inicializace proměnných
     int measurementId;
     private SQLite db;
     Measurement measurementToUpdate;
@@ -42,8 +44,10 @@ public class MeasurementInfoActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //Vybrání dat z intentu
         measurementId = getIntent().getIntExtra("ItemID",0);
 
+        //Přiřazení k view
         measurementNameText = findViewById(R.id.text_measurementInfo_name);
 
         editTextBackgroundStyle = findViewById(R.id.edit_measurementInfo_style);
@@ -57,12 +61,15 @@ public class MeasurementInfoActivity extends AppCompatActivity {
 
         drawableEditTextStyle = editTextBackgroundStyle.getBackground();
 
+        //Instance objektu
         measurementToUpdate = new Measurement();
 
+        //Nové připojení k db
         db = new SQLite(this);
         Cursor medicineInfoQuery = db.getMeasurement(measurementId);
         medicineInfoQuery.moveToFirst();
 
+        //Naplnění view hodnotami
         measurementNameText.setText(medicineInfoQuery.getString(medicineInfoQuery.getColumnIndex(SQLite.MEASUREMENT_COLUMN_NAME)));
         measurementDateEdit.setText(medicineInfoQuery.getString(medicineInfoQuery.getColumnIndex(SQLite.MEASUREMENT_COLUMN_CREATED)));
         measurementValueEdit.setText(medicineInfoQuery.getString(medicineInfoQuery.getColumnIndex(SQLite.MEASUREMENT_COLUMN_VALUE)));
@@ -73,26 +80,30 @@ public class MeasurementInfoActivity extends AppCompatActivity {
         measurementToUpdate.setMeasurement_unit(medicineInfoQuery.getString(medicineInfoQuery.getColumnIndex(SQLite.MEASUREMENT_COLUMN_UNIT)));
         measurementToUpdate.setMeasurement_created(medicineInfoQuery.getString(medicineInfoQuery.getColumnIndex(SQLite.MEASUREMENT_COLUMN_CREATED)));
 
+        //Uzavření spojení s db
         medicineInfoQuery.close();
         db.close();
     }
 
+    /**
+     * onClick na tlačítko editace
+     * @param view
+     */
     public void editMeasurement(View view) {
-
-        measurementEditBtn.setVisibility(View.GONE);
-        measurementDeleteBtn.setVisibility(View.GONE);
-        measurementSaveBtn.setVisibility(View.VISIBLE);
-
-        measurementValueEdit.setBackground(drawableEditTextStyle);
-        measurementValueEdit.setFocusableInTouchMode(true);
-
+        makeViewEditable();
     }
 
+    /**
+     * onClick na tlačítko smazání
+     * @param view
+     */
     public void deleteMeasurement(View view) {
+        //Smaže mšření z databáze
         db.deleteMeasurement(measurementId);
         db.close();
 
-        Toast.makeText(getApplicationContext(), "Měření vymazáno", Toast.LENGTH_SHORT).show();
+        //Zobrazí zprávu uživateli
+        Toast.makeText(getApplicationContext(), getResources().getString(R.string.measurementDeleted), Toast.LENGTH_SHORT).show();
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -103,14 +114,22 @@ public class MeasurementInfoActivity extends AppCompatActivity {
     }
 
 
+    /**
+     * onClick tlačítka uložení
+     * @param view
+     */
     public void saveMeasurement(View view) {
         if(!measurementValueEdit.getText().toString().matches("")){
-
             measurementToUpdate.setMeasurement_value(Integer.parseInt(measurementValueEdit.getText().toString()));
 
+            //Updatne měření v db
             db.updateMeasurement(measurementToUpdate);
+            //Uzavře spojení s db
             db.close();
-            Toast.makeText(getApplicationContext(), "Měření bylo úspěšně pozměněno", Toast.LENGTH_SHORT).show();
+            //Zobrazí zprávu uživateli
+            Toast.makeText(getApplicationContext(), getResources().getString(R.string.measurementUpdated), Toast.LENGTH_SHORT).show();
+
+            //Ukončí activitu po 2s
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -118,7 +137,18 @@ public class MeasurementInfoActivity extends AppCompatActivity {
                 }
             }, 2000);
         } else {
-            Toast.makeText(getApplicationContext(), "Pole s hodnotou je prázdné", Toast.LENGTH_SHORT).show();
+            //Zobrazí zprávu uživateli
+            Toast.makeText(getApplicationContext(), getResources().getString(R.string.measurementValueInputError), Toast.LENGTH_SHORT).show();
         }
+    }
+
+    //Změní view, tak aby byly editovatelné
+    public void makeViewEditable(){
+        measurementEditBtn.setVisibility(View.GONE);
+        measurementDeleteBtn.setVisibility(View.GONE);
+        measurementSaveBtn.setVisibility(View.VISIBLE);
+
+        measurementValueEdit.setBackground(drawableEditTextStyle);
+        measurementValueEdit.setFocusableInTouchMode(true);
     }
 }

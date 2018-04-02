@@ -11,7 +11,13 @@ import android.database.sqlite.SQLiteOpenHelper;
 import com.ronald.medin.Classes.Address;
 import com.ronald.medin.Classes.Contact;
 import com.ronald.medin.Classes.Doctor;
+import com.ronald.medin.Classes.Inventory;
 import com.ronald.medin.Classes.Measurement;
+import com.ronald.medin.Classes.Treatment;
+import com.ronald.medin.Classes.Treatment_info;
+import com.ronald.medin.Classes.Treatment_info_Treatment;
+import com.ronald.medin.Classes.Treatment_info_Treatment_time;
+import com.ronald.medin.Classes.Treatment_time;
 import com.ronald.medin.Classes.Working_hours;
 
 import java.io.FileOutputStream;
@@ -31,7 +37,6 @@ public class SQLite extends SQLiteOpenHelper {
     private SQLiteDatabase mDataBase;
     private final Context mContext;
 
-    //The Android's default system path of your application database.
     public static String DB_NAME = "medin.db";
 
     //Doctor table names
@@ -94,6 +99,7 @@ public class SQLite extends SQLiteOpenHelper {
     public static final String MEDICINE_COLUMN_NAME = "name";
     public static final String MEDICINE_COLUMN_TYPE = "type";
     public static final String MEDICINE_COLUMN_PACKAGE_QUANTITY = "package_quantity";
+    public static final String MEDICINE_COLUMN_PACKAGE_UNIT = "package_unit";
 
     //Medicine_info table names
     public static final String MEDICINE_INFO_TABLE_NAME = "Medicine_info";
@@ -110,6 +116,48 @@ public class SQLite extends SQLiteOpenHelper {
     public static final String MEDICINE_MEDICINE_INFO_COLUMN_ID = "_id";
     public static final String MEDICINE_MEDICINE_INFO_COLUMN_MEDICINE_ID = "medicine_id";
     public static final String MEDICINE_MEDICINE_INFO_COLUMN_MEDICINE_INFO_ID = "medicine_info_id";
+
+    //Treatment table names
+    public static final String TREATMENT_TABLE_NAME = "Treatment";
+    public static final String TREATMENT_COLUMN_ID = "_id";
+    public static final String TREATMENT_COLUMN_DATETIME_CALLED = "datetime_called";
+    public static final String TREATMENT_COLUMN_TREATMENT_USED = "treatment_used";
+
+    //Treatment_info table names
+    public static final String TREATMENT_INFO_TABLE_NAME = "Treatment_info";
+    public static final String TREATMENT_INFO_COLUMN_ID = "_id";
+    public static final String TREATMENT_INFO_COLUMN_DATE_STARTED = "date_started";
+    public static final String TREATMENT_INFO_COLUMN_DAYS_TO_USE = "days_to_use";
+    public static final String TREATMENT_INFO_COLUMN_USAGE_TYPE = "usage_type";
+    public static final String TREATMENT_INFO_COLUMN_USAGE_AMOUNT = "usage_amount";
+    public static final String TREATMENT_INFO_COLUMN_AMOUNT_TO_NOTIFY = "amount_to_notify";
+    public static final String TREATMENT_INFO_COLUMN_NOTE = "note";
+    public static final String TREATMENT_INFO_COLUMN_MEDICINEID = "medicineId";
+    public static final String TREATMENT_INFO_COLUMN_INVENTORYID = "inventoryId";
+
+    //Treatment_time table names
+    public static final String TREATMENT_TIME_TABLE_NAME = "Treatment_time";
+    public static final String TREATMENT_TIME_COLUMN_ID = "_id";
+    public static final String TREATMENT_TIME_COLUMN_HOUR = "hour";
+    public static final String TREATMENT_TIME_COLUMN_MINUTE = "minute";
+
+    //Treatment_info_Treatment table names
+    public static final String TREATMENT_INFO_TREATMENT_TABLE_NAME = "Treatment_info_Treatment";
+    public static final String TREATMENT_INFO_TREATMENT_COLUMN_ID = "_id";
+    public static final String TREATMENT_INFO_TREATMENT_COLUMN_TREATMENT_INFOID = "treatment_infoId";
+    public static final String TREATMENT_INFO_TREATMENT_COLUMN_TREATMENTID = "treatmentId";
+
+    //Treatment_info_Treatment_time table names
+    public static final String TREATMENT_INFO_TREATMENT_TIME_TABLE_NAME = "Treatment_info_Treatment_time";
+    public static final String TREATMENT_INFO_TREATMENT_TIME_COLUMN_ID = "_id";
+    public static final String TREATMENT_INFO_TREATMENT_TIME_COLUMN_TREATMENT_INFOID = "treatment_infoId";
+    public static final String TREATMENT_INFO_TREATMENT_TIME_COLUMN_TREATMENT_TIMEID = "treatment_timeId";
+
+    //Inventory table names
+    public static final String INVENTORY_TABLE_NAME = "Inventory";
+    public static final String INVENTORY_COLUMN_ID = "_id";
+    public static final String INVENTORY_COLUMN_QUANTITY = "quantity";
+
 
     public SQLite(Context context) {
 
@@ -372,30 +420,151 @@ public class SQLite extends SQLiteOpenHelper {
         return query;
     }
 
-    public List<String> getAllMedicineNames(){
-        List<String> medicineNames = new ArrayList<String>();
-
-        String selectQuery = "SELECT  * FROM " + MEDICINE_TABLE_NAME;
-
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(selectQuery, null);
-
-        if (cursor.moveToFirst()) {
-            do {
-                medicineNames.add(cursor.getString(1));
-            } while (cursor.moveToNext());
-        }
-
-        cursor.close();
-        db.close();
-
-        return medicineNames;
-    }
-
     public Cursor getAllMedicine(){
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor query = db.rawQuery("SELECT * FROM " + MEDICINE_TABLE_NAME + " ORDER BY " + MEDICINE_COLUMN_NAME +" ASC", null);
         return query;
+    }
+
+    public long insertTreatment(Treatment t){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        String curDatetime = getCurDatetime();
+
+        values.put(SQLite.TREATMENT_COLUMN_DATETIME_CALLED, curDatetime);
+        values.put(SQLite.TREATMENT_COLUMN_TREATMENT_USED, t.getTreatment_used());
+
+        return db.insert(TREATMENT_TABLE_NAME,null, values);
+    }
+    public long insertTreatment_info(Treatment_info ti){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        String curDatetime = getCurDatetime();
+
+        values.put(SQLite.TREATMENT_INFO_COLUMN_DATE_STARTED, curDatetime);
+        values.put(SQLite.TREATMENT_INFO_COLUMN_DAYS_TO_USE, ti.getDays_to_use());
+        values.put(SQLite.TREATMENT_INFO_COLUMN_USAGE_TYPE, ti.getUsage_type());
+        values.put(SQLite.TREATMENT_INFO_COLUMN_USAGE_AMOUNT, ti.getUsage_amount());
+        values.put(SQLite.TREATMENT_INFO_COLUMN_AMOUNT_TO_NOTIFY, ti.getAmount_to_notify());
+        values.put(SQLite.TREATMENT_INFO_COLUMN_NOTE, ti.getNote());
+        values.put(SQLite.TREATMENT_INFO_COLUMN_MEDICINEID, ti.getMedicineId());
+        values.put(SQLite.TREATMENT_INFO_COLUMN_INVENTORYID, ti.getInventoryId());
+
+        return db.insert(TREATMENT_INFO_TABLE_NAME,null, values);
+    }
+
+    public int updateTreatment_info(Treatment_info ti){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(SQLite.TREATMENT_INFO_COLUMN_USAGE_AMOUNT, ti.getUsage_amount());
+        values.put(SQLite.TREATMENT_INFO_COLUMN_AMOUNT_TO_NOTIFY, ti.getAmount_to_notify());
+
+        return db.update(TREATMENT_INFO_TABLE_NAME, values, TREATMENT_INFO_COLUMN_ID + "= ?", new String[]{ String.valueOf( ti.getId()) });
+    }
+
+    public long insertTreatment_time(Treatment_time tt){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(SQLite.TREATMENT_TIME_COLUMN_HOUR, tt.getHour());
+        values.put(SQLite.TREATMENT_TIME_COLUMN_MINUTE, tt.getMinute());
+
+        return db.insert(TREATMENT_TIME_TABLE_NAME,null, values);
+    }
+
+    public long insertTreatment_info_Treatment (Treatment_info_Treatment tit){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(SQLite.TREATMENT_INFO_TREATMENT_COLUMN_TREATMENT_INFOID, tit.getTreatment_infoId());
+        values.put(SQLite.TREATMENT_INFO_TREATMENT_COLUMN_TREATMENTID, tit.getTreatmentId());
+
+        return db.insert(TREATMENT_INFO_TREATMENT_TABLE_NAME,null, values);
+    }
+    public long insertTreatment_info_Treatment_time (Treatment_info_Treatment_time titt){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(SQLite.TREATMENT_INFO_TREATMENT_TIME_COLUMN_TREATMENT_INFOID, titt.getTreatment_infoId());
+        values.put(SQLite.TREATMENT_INFO_TREATMENT_TIME_COLUMN_TREATMENT_TIMEID, titt.getTreatment_timeId());
+
+        return db.insert(TREATMENT_INFO_TREATMENT_TIME_TABLE_NAME,null, values);
+    }
+
+    public Cursor getAllTreatmentInfo(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor query = db.rawQuery("SELECT ti._id, m.name, ti.usage_type FROM Treatment_info ti " +
+                "INNER JOIN Medicine m ON m._id = ti.medicineId " +
+                "INNER JOIN Inventory i ON i._id = ti.inventoryId ", null);
+        return query;
+    }
+    public Cursor getTreatmentInfo(int treatment_infoId){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor query = db.rawQuery("SELECT * FROM Treatment_info ti " +
+                "INNER JOIN Medicine m ON m._id = ti.medicineId " +
+                "INNER JOIN Inventory i ON i._id = ti.inventoryId " +
+                "INNER JOIN Treatment_info_Treatment_time titt ON titt.treatment_infoId = ti._id " +
+                "INNER JOIN Treatment_time tt ON tt._id = titt.treatment_timeId " +
+                " WHERE ti." + TREATMENT_INFO_COLUMN_ID + " = ?", new String[]{ Integer.toString(treatment_infoId)});
+        return query;
+    }
+    public Cursor getTreatmentInfoSelected(int treatment_infoId){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor query = db.rawQuery("SELECT * FROM Treatment_info ti " +
+                "INNER JOIN Medicine m ON m._id = ti.medicineId " +
+                "INNER JOIN Inventory i ON i._id = ti.inventoryId "+
+                " WHERE ti." + TREATMENT_INFO_COLUMN_ID + " = ?", new String[]{ Integer.toString(treatment_infoId)});
+        return query;
+    }
+
+    public int deleteTreatment_info(int treatment_infoId){
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete(TREATMENT_INFO_TABLE_NAME, TREATMENT_INFO_COLUMN_ID + " = ? ", new String[] {Integer.toString(treatment_infoId)});
+    }
+    public int deleteTreatment_time(int treatment_timeId){
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete(TREATMENT_TIME_TABLE_NAME, TREATMENT_TIME_COLUMN_ID + " = ? ", new String[] {Integer.toString(treatment_timeId)});
+    }
+    public int deleteTreatment_info_Treatment_time(int treatment_info_treatment_timeId){
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete(TREATMENT_INFO_TREATMENT_TIME_TABLE_NAME, TREATMENT_INFO_TREATMENT_TIME_COLUMN_ID + " = ? ", new String[] {Integer.toString(treatment_info_treatment_timeId)});
+    }
+
+    public Cursor getAllInventory(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor query = db.rawQuery("SELECT i._id, m.name, m.package_unit, i.quantity FROM Treatment_info ti " +
+                "INNER JOIN Medicine m ON m._id = ti.medicineId " +
+                "INNER JOIN Inventory i ON i._id = ti.inventoryId ", null);
+        return query;
+    }
+    public Cursor getInventory(int inventoryId){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor query = db.rawQuery("SELECT i._id, m.name, m.package_unit, i.quantity FROM Treatment_info ti " +
+                "INNER JOIN Medicine m ON m._id = ti.medicineId " +
+                "INNER JOIN Inventory i ON i._id = ti.inventoryId " +
+                "INNER JOIN Treatment_info_Treatment_time titt ON titt.treatment_infoId = ti._id " +
+                "INNER JOIN Treatment_time tt ON tt._id = titt.treatment_timeId " +
+                "WHERE i._id = ?", new String[]{Integer.toString(inventoryId)});
+        return query;
+    }
+    public long insertInventory(Inventory i){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(SQLite.INVENTORY_COLUMN_QUANTITY, i.getQuantity());
+
+        return db.insert(INVENTORY_TABLE_NAME,null, values);
+    }
+    public int updateInventory(Inventory i){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(INVENTORY_COLUMN_QUANTITY, i.getQuantity());
+
+        return db.update(INVENTORY_TABLE_NAME, values, INVENTORY_COLUMN_ID + "= ?", new String[]{ String.valueOf(i.getId()) });
     }
 
     public String getCurDatetime(){

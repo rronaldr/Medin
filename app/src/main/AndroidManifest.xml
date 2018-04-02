@@ -3,9 +3,8 @@
     package="com.ronald.medin">
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-
-    <!-- To access Google+ APIs: -->
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -16,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".Activities.MainActivity"
             android:configChanges="orientation"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
@@ -28,12 +27,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".Activities.TreatmentActivity"
-            android:configChanges="orientation"
-            android:parentActivityName=".MainActivity"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
         <activity
             android:name=".Activities.DoctorInfoActivity"
             android:configChanges="orientation"
@@ -62,7 +55,12 @@
         <receiver
             android:name=".Alarms.AlarmReceiver"
             android:enabled="true"
-            android:exported="true" />
+            android:exported="true">
+            <intent-filter>
+                <action android:name="newAlarm" />
+                <action android:name="cancelAlarm" />
+            </intent-filter>
+        </receiver>
 
         <activity
             android:name=".Activities.AlarmActivity"
@@ -80,6 +78,14 @@
             android:name=".Activities.InsertTreatmentActivity"
             android:label="@string/title_activity_insert_treatment"
             android:theme="@style/AppTheme" />
+        <activity
+            android:name=".Activities.InventoryInfoActivity"
+            android:label="@string/title_activity_inventory_info"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".Activities.TreatmentInfoActivity"
+            android:label="@string/title_activity_treatment_info"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

@@ -33,28 +33,6 @@ public class HelpFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_help, container, false);
 
-        final Context context = getActivity().getApplicationContext();
-        final Intent notIntent = new Intent();
-        final PendingIntent pendingIntent = PendingIntent.getActivity(context,0,notIntent,PendingIntent.FLAG_UPDATE_CURRENT);
-
-
-        v.findViewById(R.id.notificationButton).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                NotificationCompat.Builder notification2 = new NotificationCompat.Builder(context);
-                notification2.setSmallIcon(R.mipmap.ic_launcher)
-                        .setContentTitle("Upozornění")
-                        .setContentText("Zbývá posledních (5 tablet) Paralen 400")
-                        .setSound(RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION))
-                        .setContentIntent(pendingIntent);
-
-
-                NotificationManager ntfManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-                ntfManager.notify(2,notification2.build());
-
-
-            }
-        });
 
         return v;
     }

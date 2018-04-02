@@ -180,7 +180,7 @@
                 app:layout_constraintLeft_toRightOf="@id/edit_doctorInfo_street"
                 style="@style/EditTextFormStylingMedium"
                 android:inputType="number"
-                android:hint="@string/streetNumber"/>
+                android:hint="@string/streetNumberLabel"/>
             <TextView
                 android:id="@+id/text_doctorInfo_monday"
                 android:layout_width="wrap_content"
@@ -204,6 +204,7 @@
                 android:hint="@string/from"
                 android:inputType="numberDecimal"
                 style="@style/EditTextFormStylingMedium"
+                android:enabled="false"
                 app:layout_constraintBottom_toBottomOf="@id/text_doctorInfo_monday"
                 app:layout_constraintLeft_toLeftOf="@id/edit_doctorInfo_name"/>
 
@@ -212,6 +213,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="@string/to"
+                android:enabled="false"
                 android:inputType="numberDecimal"
                 style="@style/EditTextFormStylingMedium"
                 app:layout_constraintBottom_toBottomOf="@id/text_doctorInfo_monday"
@@ -229,6 +231,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="@string/from"
+                android:enabled="false"
                 android:inputType="numberDecimal"
                 style="@style/EditTextFormStylingMedium"
                 app:layout_constraintBottom_toBottomOf="@id/text_doctorInfo_tuesday"
@@ -238,6 +241,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="@string/to"
+                android:enabled="false"
                 android:inputType="numberDecimal"
                 style="@style/EditTextFormStylingMedium"
                 app:layout_constraintBottom_toBottomOf="@id/text_doctorInfo_tuesday"
@@ -255,6 +259,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="@string/from"
+                android:enabled="false"
                 android:inputType="numberDecimal"
                 style="@style/EditTextFormStylingMedium"
                 app:layout_constraintBottom_toBottomOf="@id/text_doctorInfo_wednesday"
@@ -264,12 +269,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="@string/to"
+                android:enabled="false"
                 android:inputType="numberDecimal"
                 style="@style/EditTextFormStylingMedium"
                 app:layout_constraintBottom_toBottomOf="@id/text_doctorInfo_wednesday"
                 app:layout_constraintLeft_toRightOf="@id/edit_doctorInfo_wednesdayFrom" />
-
-
             <TextView
                 android:id="@+id/text_doctorInfo_thursday"
                 android:layout_width="wrap_content"
@@ -283,6 +287,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="@string/from"
+                android:enabled="false"
                 android:inputType="numberDecimal"
                 style="@style/EditTextFormStylingMedium"
                 app:layout_constraintBottom_toBottomOf="@id/text_doctorInfo_thursday"
@@ -292,12 +297,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="@string/to"
+                android:enabled="false"
                 android:inputType="numberDecimal"
                 style="@style/EditTextFormStylingMedium"
                 app:layout_constraintBottom_toBottomOf="@id/text_doctorInfo_thursday"
                 app:layout_constraintLeft_toRightOf="@id/edit_doctorInfo_thursdayFrom" />
-
-
             <TextView
                 android:id="@+id/text_doctorInfo_friday"
                 android:layout_width="wrap_content"
@@ -311,6 +315,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="@string/from"
+                android:enabled="false"
                 android:inputType="numberDecimal"
                 style="@style/EditTextFormStylingMedium"
                 app:layout_constraintBottom_toBottomOf="@id/text_doctorInfo_friday"
@@ -320,6 +325,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="@string/to"
+                android:enabled="false"
                 android:inputType="numberDecimal"
                 style="@style/EditTextFormStylingMedium"
                 app:layout_constraintBottom_toBottomOf="@id/text_doctorInfo_friday"
@@ -341,19 +347,34 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 android:text="@string/delete"
-                android:onClick="deleteDoctorInfo"
-
-                android:layout_marginBottom="20dp"/>
+                android:onClick="deleteDoctorInfo" />
             <Button
                 android:id="@+id/btn_doctorInfo_save"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/text_doctorInfo_friday"
+                app:layout_constraintTop_toBottomOf="@id/btn_doctorInfo_edit"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 android:text="@string/save"
                 android:onClick="updateDoctor"
                 android:visibility="gone"/>
+
+            <Button
+                android:id="@+id/btn_doctorInfo_call"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:text="Zavolat"
+                android:onClick="callDoctor" />
+            <Button
+                android:id="@+id/btn_doctorInfo_email"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:text="Email"
+                android:onClick="emailDoctor" />
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
 

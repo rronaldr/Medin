@@ -175,6 +175,7 @@
                 android:inputType="numberDecimal"
                 android:minWidth="@dimen/edit_min_width_small"
                 android:maxWidth="@dimen/edit_min_width_small"
+                android:focusableInTouchMode="false"
                 app:layout_constraintBottom_toBottomOf="@id/text_insertDoctor_monday"
                 app:layout_constraintRight_toLeftOf="@id/edit_insertDoctor_monday_to" />
 
@@ -186,6 +187,7 @@
                 android:inputType="numberDecimal"
                 android:minWidth="@dimen/edit_min_width_small"
                 android:maxWidth="@dimen/edit_min_width_small"
+                android:focusableInTouchMode="false"
                 app:layout_constraintBottom_toBottomOf="@id/text_insertDoctor_monday"
                 app:layout_constraintRight_toRightOf="@id/edit_insertDoctor_name" />
 
@@ -208,6 +210,7 @@
                 android:inputType="numberDecimal"
                 android:minWidth="@dimen/edit_min_width_small"
                 android:maxWidth="@dimen/edit_min_width_small"
+                android:focusableInTouchMode="false"
                 app:layout_constraintBottom_toBottomOf="@id/text_insertDoctor_tuesday"
                 app:layout_constraintRight_toLeftOf="@id/edit_insertDoctor_tuesday_to" />
 
@@ -219,6 +222,7 @@
                 android:inputType="numberDecimal"
                 android:minWidth="@dimen/edit_min_width_small"
                 android:maxWidth="@dimen/edit_min_width_small"
+                android:focusableInTouchMode="false"
                 app:layout_constraintBottom_toBottomOf="@id/text_insertDoctor_tuesday"
                 app:layout_constraintRight_toRightOf="@id/edit_insertDoctor_name" />
 
@@ -241,6 +245,7 @@
                 android:inputType="numberDecimal"
                 android:minWidth="@dimen/edit_min_width_small"
                 android:maxWidth="@dimen/edit_min_width_small"
+                android:focusableInTouchMode="false"
                 app:layout_constraintBottom_toBottomOf="@id/text_insertDoctor_wednesday"
                 app:layout_constraintRight_toLeftOf="@id/edit_insertDoctor_wednesday_to" />
 
@@ -252,6 +257,7 @@
                 android:inputType="numberDecimal"
                 android:minWidth="@dimen/edit_min_width_small"
                 android:maxWidth="@dimen/edit_min_width_small"
+                android:focusableInTouchMode="false"
                 app:layout_constraintBottom_toBottomOf="@id/text_insertDoctor_wednesday"
                 app:layout_constraintRight_toRightOf="@id/edit_insertDoctor_name" />
 
@@ -274,6 +280,7 @@
                 android:inputType="numberDecimal"
                 android:minWidth="@dimen/edit_min_width_small"
                 android:maxWidth="@dimen/edit_min_width_small"
+                android:focusableInTouchMode="false"
                 app:layout_constraintBottom_toBottomOf="@id/text_insertDoctor_thursday"
                 app:layout_constraintRight_toLeftOf="@id/edit_insertDoctor_thursday_to" />
 
@@ -285,6 +292,7 @@
                 android:inputType="numberDecimal"
                 android:minWidth="@dimen/edit_min_width_small"
                 android:maxWidth="@dimen/edit_min_width_small"
+                android:focusableInTouchMode="false"
                 app:layout_constraintBottom_toBottomOf="@id/text_insertDoctor_thursday"
                 app:layout_constraintRight_toRightOf="@id/edit_insertDoctor_name" />
 
@@ -307,6 +315,7 @@
                 android:inputType="numberDecimal"
                 android:minWidth="@dimen/edit_min_width_small"
                 android:maxWidth="@dimen/edit_min_width_small"
+                android:focusableInTouchMode="false"
                 app:layout_constraintBottom_toBottomOf="@id/text_insertDoctor_friday"
                 app:layout_constraintRight_toLeftOf="@id/edit_insertDoctor_friday_to" />
 
@@ -318,6 +327,7 @@
                 android:inputType="numberDecimal"
                 android:minWidth="@dimen/edit_min_width_small"
                 android:maxWidth="@dimen/edit_min_width_small"
+                android:focusableInTouchMode="false"
                 app:layout_constraintBottom_toBottomOf="@id/text_insertDoctor_friday"
                 app:layout_constraintRight_toRightOf="@id/edit_insertDoctor_name" />
 
